@@ -1,0 +1,97 @@
+﻿@model hotiguassu.Models.GirlsModels
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+  <div class="header">
+        @Html.Partial("_MenuGirlPartial")
+  </div>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.HiddenFor(model => model.idGirl)
+
+        
+            @Html.LabelFor(model => model.Nome)
+        
+        
+            @Html.EditorFor(model => model.Nome)
+            @Html.ValidationMessageFor(model => model.Nome)
+        
+
+            @Html.LabelFor(model => model.DtNacimento)
+        
+        
+            @Html.EditorFor(model => model.DtNacimento)
+            @Html.ValidationMessageFor(model => model.DtNacimento)
+        
+
+        
+            @Html.LabelFor(model => model.Biografia)
+        
+        
+            @Html.EditorFor(model => model.Biografia)
+            @Html.ValidationMessageFor(model => model.Biografia)
+        
+
+        
+            @Html.LabelFor(model => model.Telefones)
+        
+        
+            @Html.EditorFor(model => model.Telefones)
+            @Html.ValidationMessageFor(model => model.Telefones)
+        
+
+        
+            @Html.LabelFor(model => model.Altura)
+        
+        
+            @Html.EditorFor(model => model.Altura)
+            @Html.ValidationMessageFor(model => model.Altura)
+        
+
+        
+            @Html.LabelFor(model => model.Peso)
+        
+        
+            @Html.EditorFor(model => model.Peso)
+            @Html.ValidationMessageFor(model => model.Peso)
+        
+
+        
+            @Html.LabelFor(model => model.Cabelos)
+        
+        
+            @Html.EditorFor(model => model.Cabelos)
+            @Html.ValidationMessageFor(model => model.Cabelos)
+        
+
+        
+            @Html.LabelFor(model => model.Quadris)
+        
+        
+            @Html.EditorFor(model => model.Quadris)
+            @Html.ValidationMessageFor(model => model.Quadris)
+        
+
+        
+            @Html.LabelFor(model => model.Busto)
+        
+        
+            @Html.EditorFor(model => model.Busto)
+            @Html.ValidationMessageFor(model => model.Busto)
+   
+   </div> 
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+}
+

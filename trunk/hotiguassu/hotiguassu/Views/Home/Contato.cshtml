@@ -1,0 +1,48 @@
+﻿
+@{Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+  <div class="header">
+        <div class="subpages-nav">
+            @Html.Partial("_MenuInicialPartial")
+        </div>
+  </div>  
+
+  <section> 
+<!--==============================content================================
+    <section id="content">
+    	<div class="pad-1">
+            <div class="page6-row1">
+            	<div class="col-14">
+                    <h2 class="h2">Contact info:</h2>
+					<dl>
+                    	<dt class="clr-1"><strong >Paris Clark</strong><br>8901 Marmora Road, Glasgow, D04 89GR</dt>
+                        <dd><span>Telephone:</span>+1 959 603 6035</dd>
+                        <dd><span>Fax:</span>+1 504 889 9898</dd>
+                        <dd class="p3"><span>Email:</span><a href="#" class="link">mail@thomsander.com</a></dd>
+                        <dt class="clr-1">9863 Mill Road, Cambridge, MG09 99HT</dt>
+                        <dd><span>Telephone:</span>+1 959 603 6035</dd>
+                        <dd><span>Fax:</span>+1 504 889 9898</dd>
+                        <dd><span>Email:</span><a href="#" class="link">mail@thomsander.com</a></dd>
+                    </dl> 
+                </div> 
+                <div class="col-15">
+                    <h2 class="h2 p2">Location:</h2>
+					<div class="map img-border">
+					  <iframe src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Brooklyn,+New+York,+NY,+United+States&amp;aq=0&amp;sll=37.0625,-95.677068&amp;sspn=61.282355,146.513672&amp;ie=UTF8&amp;hq=&amp;hnear=Brooklyn,+Kings,+New+York&amp;ll=40.649974,-73.950005&amp;spn=0.01628,0.025663&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>
+					</div>
+
+                </div>-->
+                <div class="col-16">
+                    <h2 class="h2 p2">Contato:</h2>
+					<form id="form" method="post" >
+                      <fieldset>
+                        <label><input type="text" value="Nome Completo" onBlur="if(this.value=='') this.value='Nome Completo'" onFocus="if(this.value =='Nome Completo' ) this.value=''"></label>
+                        <label><input type="text" value="Email" onBlur="if(this.value=='') this.value='Email'" onFocus="if(this.value =='Email' ) this.value=''"></label>
+                        <label><textarea onBlur="if(this.value==''){this.value='Menssagem'}" onFocus="if(this.value=='Menssagem'){this.value=''}"> Menssagem </textarea></label>
+                        <div class="btns"><a href="#" class="link-1">Limpar</a><a href="#" class="link-1" onClick="document.getElementById('form').submit()">Enviar</a></div>
+                      </fieldset>  
+                    </form> 
+                </div>
+    </section> 
+           

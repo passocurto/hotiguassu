@@ -1,0 +1,17 @@
+﻿@model hotiguassu.Models.LogOnModel
+
+@{
+    ViewBag.Title = "Log On";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+                <div class="col-16" style="margin: 0 auto;margin-top: 150px;">
+                    <h2 class="h2 p2">Login</h2>
+					<form id="form" method="post" >
+                      <fieldset>
+                        <label><input type="text" value="Login" onBlur="if(this.value=='') this.value='Login'" onFocus="if(this.value =='Login' ) this.value=''"></label>
+                        <label><input type="text" value="Senha" onBlur="if(this.value=='') this.value='Senha'" onFocus="if(this.value =='Senha' ) this.value=''"></label>
+                        <div class="btns"><a href="#" class="link-1">Cancelar</a><a href="#" class="link-1" onClick="document.getElementById('form').submit()">Logar</a></div>
+                      </fieldset>  
+                    </form> 
+                </div>

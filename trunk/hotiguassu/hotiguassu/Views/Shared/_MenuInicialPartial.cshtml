@@ -1,0 +1,16 @@
+﻿      <div class="nav">
+            <nav>  
+                <ul class="menu">
+                    <li class="current li-none">@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Garotas", "Garotas", "Home")</li>
+                    <li>@Html.ActionLink("Contato", "Contato", "Home")</li>
+                    <li class="li-left li-none"></li>
+                    <li  style="margin-left: 205px; color:White">@Html.Partial("_LogOnPartial")</li>
+                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                </ul>
+            </nav>
+      </div>
+        <header>
+            <h1><a href="index.html"><img src="@Url.Content("~/Content/images/logo.png")" alt="" /></a></h1>
+        </header>
+ 
