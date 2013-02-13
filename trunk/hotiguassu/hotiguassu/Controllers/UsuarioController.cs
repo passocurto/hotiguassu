@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Routing;
 using System.Web.Security;
 using hotiguassu.Models;
 
@@ -27,15 +24,35 @@ namespace hotiguassu.Controllers
         [HttpPost]
         public ActionResult LogOn(UsuarioModels model, string returnUrl)
         {
+            var q = from u in db.UsuarioModels
+                    where u.UserName == model.UserName
+                    select u;
 
-            if (model != null) {
+            var usu = q.FirstOrDefault();
 
-                return RedirectToAction("Index", "Girls");
-            }
-
-            return RedirectToAction("Index", "Girls");
-        }
-
+            if (usu != null)
+            {
+                byte[] senhaAtual = ModuloGeral.encrypt(model.Password);
+                var logado = ModuloGeral.comparepwd(usu.Password, senhaAtual);
+             
+                    if (logado)
+                    {
+                        FormsAuthentication.SetAuthCookie(model.UserName, false);
+                        if (!String.IsNullOrEmpty(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Admin", "");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Usuário ou senha incorretos.");
+                    }
+                }
+           }
 
         //
         // POST: /Account/LogOn
@@ -96,7 +113,7 @@ namespace hotiguassu.Controllers
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.OldPassword, model.Email, null, null, true, null, out createStatus);
+                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
@@ -139,7 +156,7 @@ namespace hotiguassu.Controllers
                 try
                 {
                     MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
+                    changePasswordSucceeded = currentUser.ChangePassword(model.Password, model.Password);
                 }
                 catch (Exception)
                 {

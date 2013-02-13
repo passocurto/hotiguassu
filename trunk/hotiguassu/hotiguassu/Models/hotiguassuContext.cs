@@ -4,6 +4,16 @@ namespace hotiguassu.Models
 {
     public class hotiguassuContext : DbContext
     {
+
+         public hotiguassuContext(): base("Connection"){
+
+                }
+
+         public hotiguassuContext(string strConnection): base(strConnection)
+                {
+
+                }
+
         // You can add custom code to this file. Changes will not be overwritten.
         // 
         // If you want Entity Framework to drop and regenerate your database
