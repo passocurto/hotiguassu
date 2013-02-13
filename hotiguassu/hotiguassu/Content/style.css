@@ -99,7 +99,7 @@ ul.menu li a {font-size:18px; line-height:24px; color:#fff; font-style:italic; d
 ul.menu li a:hover , ul.menu li.current a { color:#bf96c7;}
 
 /*********************************content*************************************/
-#content {width:1024px; margin:0 auto; background:url(images/bg.jpg) 0 0 repeat; padding-bottom:49px; border-bottom:#303030 1px solid;height: 500px;}
+#content {width:1024px; margin:0 auto; background:url(images/bg.jpg) 0 0 repeat; padding-bottom:49px; border-bottom:#303030 1px solid;}
 
 .img-border {border:#474747 4px solid; display:inline-block;}
 

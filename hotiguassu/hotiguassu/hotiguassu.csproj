@@ -79,6 +79,7 @@
     <Compile Include="Models\UsuarioModels.cs" />
     <Compile Include="Models\GirlsModels.cs" />
     <Compile Include="Models\hotiguassuContext.cs" />
+    <Compile Include="ModuloGeral.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
