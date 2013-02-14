@@ -176,5 +176,5 @@ dl dd a:hover {}
 
 #contentGirls {width:1024px; margin:0 auto; background:url(images/bg.jpg) 0 0 repeat; padding-bottom:49px; border-bottom:#303030 1px solid;height: 400px;}
 
-#contentLeft{float: left;height: 300px;padding: 50px 20px 20px 150px;}
+#contentLeft{float: left;height: 300px;padding: 20px 30px 20px 20px;}
 #contentRigth{float: right;height: 300px;padding: 50px 150px 20px 20px;}
