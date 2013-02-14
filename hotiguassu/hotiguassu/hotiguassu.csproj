@@ -165,9 +165,6 @@
     <Content Include="Content\tabs.css" />
     <Content Include="Content\Templates\Emails\confirmacaoRegistro.txt" />
     <Content Include="Global.asax" />
-    <Content Include="obj\Debug\hotiguassu.csproj.FileListAbsolute.txt" />
-    <Content Include="obj\Debug\hotiguassu.dll" />
-    <Content Include="obj\Debug\hotiguassu.pdb" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -193,8 +190,6 @@
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Autenticacao\LogOn.cshtml" />
     <Content Include="Views\Girls\Index.cshtml" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
-    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Girls\Create.cshtml" />
     <Content Include="Views\Girls\Delete.cshtml" />
     <Content Include="Views\Girls\Details.cshtml" />
@@ -236,7 +231,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="obj\Debug\TempPE\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
