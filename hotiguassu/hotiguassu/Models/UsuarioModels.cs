@@ -16,15 +16,12 @@ namespace hotiguassu.Models
 
         [Required]
         [Display(Name = "Longin")]
-        public string UserName { get; set; }
+        public string Login { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Senha Atual")]
-        public string Password { get; set; }
-
-        [Display(Name = "Lembrar senha")]
-        public Boolean RememberMe { get; set; }
+        public string Senha { get; set; }
 
         [Required]
         [DataType(DataType.EmailAddress)]
