@@ -79,6 +79,7 @@ namespace hotiguassu.Controllers
         {
             if (ModelState.IsValid)
             {
+                girlsmodels.situacao = "P";
                 db.GirlsModels.Add(girlsmodels);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
