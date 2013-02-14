@@ -76,6 +76,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\NotificacaoEmail.cs" />
     <Compile Include="Models\UsuarioModels.cs" />
     <Compile Include="Models\GirlsModels.cs" />
     <Compile Include="Models\hotiguassuContext.cs" />
@@ -84,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\config\menu.xml" />
+    <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\ie.css" />
     <Content Include="Content\images\banner.jpg" />
     <Content Include="Content\images\bg.jpg" />
@@ -162,6 +164,7 @@
     <Content Include="Content\slider.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\tabs.css" />
+    <Content Include="Content\Templates\Emails\confirmacaoRegistro.txt" />
     <Content Include="Global.asax" />
     <Content Include="obj\Debug\hotiguassu.csproj.FileListAbsolute.txt" />
     <Content Include="obj\Debug\hotiguassu.dll" />
@@ -219,8 +222,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Usuario\ChangePassword.cshtml" />
     <Content Include="Views\Usuario\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Usuario\LogOn.cshtml" />
-    <Content Include="Views\Usuario\Register.cshtml" />
+    <Content Include="Views\Girls\LogOn.cshtml" />
+    <Content Include="Views\Girls\Register.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />

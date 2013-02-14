@@ -34,7 +34,7 @@ namespace hotiguassu.Areas.Admin.Controllers
             //                              orderby s.idNovidade descending
             //                              select s).Take(4).ToList();
 
-            return View();
+                return RedirectToAction("Index", "../Admin/Autenticacao/");
 
             } else {
 
