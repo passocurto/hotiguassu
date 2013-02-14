@@ -5,3 +5,10 @@ C:\Users\Vilmar\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\bin\
 C:\Users\Vilmar\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Vilmar\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\obj\Debug\hotiguassu.dll
 C:\Users\Vilmar\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\obj\Debug\hotiguassu.pdb
+C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\bin\hotiguassu.dll
+C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\bin\hotiguassu.pdb
+C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\bin\EntityFramework.dll
+C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\bin\EntityFramework.xml
+C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\obj\Debug\hotiguassu.dll
+C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\obj\Debug\hotiguassu.pdb

@@ -1,4 +1,4 @@
-﻿@model hotiguassu.Models.UsuarioModels
+﻿@model hotiguassu.Models.GirlsModels
 
 @{
     ViewBag.Title = "Log On";
@@ -42,7 +42,6 @@
 		
                         <label><input type="text" value="login" onBlur="if(this.value=='') this.value='login'" onFocus="if(this.value =='login' ) this.value=''"></label>
                         <label><input type="text" value="senha" onBlur="if(this.value=='') this.value='senha'" onFocus="if(this.value =='senha' ) this.value=''"></label>
-                        <label> @Html.CheckBoxFor(m => m.RememberMe, new { @style="width: 35px;"}) @Html.LabelFor(m => m.RememberMe) </label>
                     
                     <div class="btns">
                         <a id="cancelar" href="#" class="link-1">Cancelar</a>

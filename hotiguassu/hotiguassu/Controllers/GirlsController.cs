@@ -6,12 +6,45 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using hotiguassu.Models;
+using System.Web.Security;
 
 namespace hotiguassu.Controllers
 { 
     public class GirlsController : Controller
     {
         private hotiguassuContext db = new hotiguassuContext();
+
+
+        //[HttpPost]
+        //public ActionResult LogOn(UsuarioModels model, string returnUrl)
+        //{
+        //    var q = from u in db.UsuarioModels
+        //            where u.UserName == model.UserName
+        //            select u;
+
+        //  var usu = q.FirstOrDefault();
+
+        //   byte[] senhaAtual = ModuloGeral.encrypt(model.Password);
+        //   var logado = ModuloGeral.comparepwd(usu.Password, senhaAtual);
+        //     if (logado)
+        //        {
+        //            FormsAuthentication.SetAuthCookie(model.UserName, false);
+        //            if (!String.IsNullOrEmpty(returnUrl))
+        //            {
+        //                return Redirect(returnUrl);
+        //            }
+        //            else
+        //            {
+        //                return RedirectToAction("Admin", "");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ModelState.AddModelError("", "Usuário ou senha incorretos.");
+        //        }
+        //}
+
+
 
         //
         // GET: /Girls/
@@ -104,5 +137,32 @@ namespace hotiguassu.Controllers
             db.Dispose();
             base.Dispose(disposing);
         }
+
+
+        //
+        // GET: /Account/Register
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+  
+
+        [HttpPost]
+        public ActionResult Register(GirlsModels model)
+        {
+            if (model != null) {
+                db.GirlsModels.Add(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");  
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult LogOn()
+        {
+            return View();
+        }
+
     }
 }

@@ -30,28 +30,29 @@ namespace hotiguassu.Controllers
 
             var usu = q.FirstOrDefault();
 
-            if (usu != null)
-            {
-                byte[] senhaAtual = ModuloGeral.encrypt(model.Password);
-                var logado = ModuloGeral.comparepwd(usu.Password, senhaAtual);
+            //if (usu != null)
+            //{
+            //    byte[] senhaAtual = ModuloGeral.encrypt(model.Password);
+            //    //var logado = ModuloGeral.comparepwd(usu.Password, senhaAtual);
              
-                    if (logado)
-                    {
-                        FormsAuthentication.SetAuthCookie(model.UserName, false);
-                        if (!String.IsNullOrEmpty(returnUrl))
-                        {
-                            return Redirect(returnUrl);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Admin", "");
-                        }
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Usuário ou senha incorretos.");
-                    }
-                }
+            //        if (logado)
+            //        {
+            //            FormsAuthentication.SetAuthCookie(model.UserName, false);
+            //            if (!String.IsNullOrEmpty(returnUrl))
+            //            {
+            //                return Redirect(returnUrl);
+            //            }
+            //            else
+            //            {
+            //                return RedirectToAction("Admin", "");
+            //            }
+            //        }
+            //        else
+            //        {
+            //            ModelState.AddModelError("", "Usuário ou senha incorretos.");
+            //        }
+            //    }
+            return View();
            }
 
         //
