@@ -22,11 +22,10 @@ namespace hotiguassu.Controllers
 
 
         [HttpPost]
-        public ActionResult LogOn(UsuarioModels model, string returnUrl)
+        public ActionResult LogOn(UsuarioModels model)
         {
             var q = from u in db.UsuarioModels
-                    where u.UserName == model.UserName
-                    select u;
+                    where u.Login == model.Login select u;
 
             var usu = q.FirstOrDefault();
 
@@ -114,11 +113,11 @@ namespace hotiguassu.Controllers
             {
                 // Attempt to register the user
                 MembershipCreateStatus createStatus;
-                Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
+                Membership.CreateUser(model.Login, model.Senha, model.Email, null, null, true, null, out createStatus);
 
                 if (createStatus == MembershipCreateStatus.Success)
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName, false /* createPersistentCookie */);
+                    FormsAuthentication.SetAuthCookie(model.Login, false /* createPersistentCookie */);
                     return RedirectToAction("Index", "Girls");
                 }
                 else
@@ -157,7 +156,7 @@ namespace hotiguassu.Controllers
                 try
                 {
                     MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.Password, model.Password);
+                    changePasswordSucceeded = currentUser.ChangePassword(model.Senha, model.Senha);
                 }
                 catch (Exception)
                 {

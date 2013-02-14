@@ -3,44 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using hotiguassu.Models;
 
 namespace hotiguassu.Areas.Admin.Controllers
 {
-    public class HomeController : Controller 
+    public class HomeController : Controller
     {
+        private hotiguassuContext db = new hotiguassuContext();
+
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            ModuloGeral.WriteLog(Server.MapPath("~/ErrorLog/log_site.txt"), filterContext.Exception.ToString());
+
+            // Output a nice error page
+            if (filterContext.HttpContext.IsCustomErrorEnabled)
+            {
+                filterContext.ExceptionHandled = true;
+                // this.View("Error",filterContext.Exception ).ExecuteResult(this.ControllerContext);
+            }
+        }
+
         public ActionResult Index()
         {
+
             var login = this.User.Identity.Name;
-            var usuario = "teste";
-            
-            //  var usuario = db.Usuarios.Include("perfil");
-            if (usuario.ToString() != "") {
-            //if ((usuario.ToString() != "") && (login.ToString() != ""))
-            //{
-            //    foreach (var item in usuario)
-            //    {
-            //        if ((item.dsLogin == login) && ((item.perfil.nmPerfil == "Hoteleiro") || (item.perfil.nmPerfil == "Hoteleiro Pendente")))
-            //        {
-            //            var usuarioPermissao = from p in item.perfil.perfilTelas select p;
 
-            //            Session["permissao"] = usuarioPermissao.ToList();
+            if (login.ToString() != "")
+            {
+                var usuario = db.UsuarioModels.Where(x => x.Login == login).FirstOrDefault();
 
-            //            Session["grupo"] = (from g in usuarioPermissao select g.tela.nmGrupo).Distinct().ToList();
-
-            //        }
-            //    }
-            //    ViewBag.ListaNovidades = (from s in db.Novidade
-            //                              where s.flSituacao == true
-            //                              orderby s.idNovidade descending
-            //                              select s).Take(4).ToList();
-
-                return RedirectToAction("Index", "../Admin/Autenticacao/");
-
-            } else {
-
-                return RedirectToAction("Index", "../Admin/Autenticacao/");
-
+                if (usuario.Login == login.ToString())
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Autenticacao");
+                }
             }
+            return RedirectToAction("Index", "Autenticacao");
+
         }
 
     }
