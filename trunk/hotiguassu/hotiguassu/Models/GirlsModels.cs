@@ -15,7 +15,7 @@ namespace hotiguassu.Models
 
         [Required]
         [Display(Name = "Data de nascimento")]
-        public string DtNacimento { get; set; }
+        public DataType DtNacimento { get; set; }
 
         [Display(Name = "Biografia")]
         public string Biografia { get; set; }
@@ -24,7 +24,7 @@ namespace hotiguassu.Models
         public string Telefones { get; set; }
 
         [Display(Name = "Altura")]
-        public string Altura { get; set; }
+        public char Altura { get; set; }
 
         [Display(Name = "Peso")]
         public string Peso { get; set; }
@@ -43,6 +43,9 @@ namespace hotiguassu.Models
 
         [Display(Name = "Login")]
         public string login { get; set; }
+
+        [Display(Name = "Situação")]
+        public string situacao { get; set; }
 
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Por favor entre com um endereço de e-mail valido !")]
         [Required(ErrorMessage = "O {0} é requerido.")]
