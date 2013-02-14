@@ -9,12 +9,21 @@ font-size: 14px;
 font-family: "Times New Roman", Times, serif;
 color: #6f6f6f;
 padding: 4px 10px 5px 10px;
-margin:5px;
 outline: medium none;
 width: 238px;
 height: 17px;
-float: left;
+border-radius:3px;
 }
+
+#Peso,#Altura,#Busto,#Quadris {width: 40px;}
+#DtNacimento{width:66px;}
+#tipoCabelo {height: 26px;width:150px}
+#opcaoTelefone1 {width: 100px;margin:0 0 8px 0;}
+#opcaoTelefone2 {width: 100px;margin:0 0 8px 0;}
+#opcaoTelefone3 {width: 100px;margin:0 0 8px 0;}
+fieldset { border:#3f3f3f 1px solid; padding: 10px; border-radius: 5px; width: 145px;}
+legend {padding: 0.2em 0.5em;}
+
 
 .validation-summary-errors{margin: 0 auto;text-align: center;margin-top: 50px;
 }
