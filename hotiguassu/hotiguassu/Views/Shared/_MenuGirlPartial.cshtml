@@ -1,16 +1,18 @@
-﻿      <div class="nav">
+﻿ @model hotiguassu.Models.GirlsModels
+                 
+      <div class="nav">
             <nav>  
                 <ul class="menu">
                     <li class="current li-none">@Html.ActionLink("Girls", "Index", "Girls")</li>
-                    <li>@Html.ActionLink("Editar", "Edit", "Girls")</li>
+                    <li>@Html.ActionLink("Editar", "Edit", new { id = Model.idGirl })</li>
                     <li>@Html.ActionLink("Fotos", "Fotos", "Girls")</li>
                     <li class="li-left li-none"></li>
-                    <li style="margin-left: 205px; color:White">@Html.ActionLink("Delete", "Delete", "Girls")</li>
-                    <li>@Html.Partial("_LogOnPartial")</li>
+                    <li style="margin-left: 205px;">@Html.ActionLink("Delete", "Delete", new { id = Model.idGirl })</li>
+                     <li style="color:White">@Html.Partial("_LogOnPartial")</li>
                     
                 </ul>
             </nav>
       </div>
         <header>
-            <h1><a href="index.html"><img src="@Url.Content("~/Content/images/logo.png")" alt="" /></a></h1>
+            <h1><a href="/"><img src="@Url.Content("~/Content/images/logo.png")" alt="" /></a></h1>
         </header>

@@ -176,5 +176,12 @@ dl dd a:hover {}
 
 #contentGirls {width:1024px; margin:0 auto; background:url(images/bg.jpg) 0 0 repeat; padding-bottom:49px; border-bottom:#303030 1px solid;height: 400px;}
 
-#contentLeft{float: left;height: 300px;padding: 20px 30px 20px 20px;}
-#contentRigth{float: right;height: 300px;padding: 50px 150px 20px 20px;}
+#contentLeft{float: left;height: 300px;padding: 50px 30px 20px 170px;}
+#contentRigth{float: right;height: 300px;padding: 50px 170px 20px 20px;}
+
+
+/**********************Erro Girls**********************/
+
+#Erro{margin: 0 auto;width: 1024px;text-align:center;color:#bf96c7;padding:15px;font-weight:bold}
+
+

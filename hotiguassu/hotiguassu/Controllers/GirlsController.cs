@@ -15,34 +15,30 @@ namespace hotiguassu.Controllers
         private hotiguassuContext db = new hotiguassuContext();
 
 
-        //[HttpPost]
-        //public ActionResult LogOn(UsuarioModels model, string returnUrl)
-        //{
-        //    var q = from u in db.UsuarioModels
-        //            where u.UserName == model.UserName
-        //            select u;
+        [HttpPost]
+        public ActionResult LogOn(GirlsModels models)
+        {
+            var q = from u in db.GirlsModels
+                    where u.login == models.login
+                    select u;
 
-        //  var usu = q.FirstOrDefault();
+            var usu = q.FirstOrDefault();
+            
+            var logado = false;
+            if (usu.Senha == models.Senha)
+                logado = true;
 
-        //   byte[] senhaAtual = ModuloGeral.encrypt(model.Password);
-        //   var logado = ModuloGeral.comparepwd(usu.Password, senhaAtual);
-        //     if (logado)
-        //        {
-        //            FormsAuthentication.SetAuthCookie(model.UserName, false);
-        //            if (!String.IsNullOrEmpty(returnUrl))
-        //            {
-        //                return Redirect(returnUrl);
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Admin", "");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "Usuário ou senha incorretos.");
-        //        }
-        //}
+            if (logado)
+            {
+                FormsAuthentication.SetAuthCookie(models.login, false);
+                return View("index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "usuário ou senha incorretos.");
+            }
+            return View("LogOn");
+        }
 
 
 
@@ -51,6 +47,8 @@ namespace hotiguassu.Controllers
 
         public ViewResult Index()
         {
+             HttpCookie authCookie = FormsAuthentication.GetAuthCookie("login", false);
+
             return View(db.GirlsModels.ToList());
         }
 
@@ -68,7 +66,17 @@ namespace hotiguassu.Controllers
 
         public ActionResult Create()
         {
-            return View();
+
+            var model = new GirlsModels();
+                model.TipodeCabelo = new[]
+                {
+                    // TODO: those values could come from a database for example
+                    new SelectListItem { Value = "Loira", Text = "Loira" },
+                    new SelectListItem { Value = "Morena", Text = "Morena" },
+                    new SelectListItem { Value = "Ruiva", Text = "Ruiva" },
+                };
+
+                return View(model);
         } 
 
         //
@@ -77,14 +85,16 @@ namespace hotiguassu.Controllers
         [HttpPost]
         public ActionResult Create(GirlsModels girlsmodels)
         {
-            if (ModelState.IsValid)
+            if (girlsmodels != null )
             {
                 girlsmodels.situacao = "P";
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.GirlsModels.Add(girlsmodels);
                 db.SaveChanges();
+                
                 return RedirectToAction("Index");  
             }
-
+        
             return View(girlsmodels);
         }
         
@@ -162,7 +172,16 @@ namespace hotiguassu.Controllers
 
         public ActionResult LogOn()
         {
-            return View();
+            var model = new GirlsModels();
+            return View(model);
+        }
+
+
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
         }
 
     }

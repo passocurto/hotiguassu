@@ -1,4 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+using System.Web.Mvc;
+using System.Web.Security;
 
 namespace hotiguassu.Models
 {
@@ -15,7 +20,7 @@ namespace hotiguassu.Models
 
         [Required]
         [Display(Name = "Data de nascimento")]
-        public DataType DtNacimento { get; set; }
+        public DateTime? DtNacimento { get; set; }
 
         [Display(Name = "Biografia")]
         public string Biografia { get; set; }
@@ -24,7 +29,7 @@ namespace hotiguassu.Models
         public string Telefones { get; set; }
 
         [Display(Name = "Altura")]
-        public char Altura { get; set; }
+        public string Altura { get; set; }
 
         [Display(Name = "Peso")]
         public string Peso { get; set; }
@@ -38,7 +43,7 @@ namespace hotiguassu.Models
         [Display(Name = "Busto")]
         public string Busto { get; set; }
 
-        [Display(Name = "Email")]
+        [Display(Name = "E-mail")]
         public string email { get; set; }
 
         [Display(Name = "Login")]
@@ -50,8 +55,12 @@ namespace hotiguassu.Models
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Por favor entre com um endereço de e-mail valido !")]
         [Required(ErrorMessage = "O {0} é requerido.")]
         [StringLength(100, ErrorMessage = "O {0} deve conter no máximo 100 caracteres.")]
-        [Display(Name = "E-mail")]
+        [Display(Name = "Senha")]
         public string Senha { get; set; }
+
+
+
+        public IEnumerable<SelectListItem> TipodeCabelo { get; set; }
 
     }
 }
