@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using hotiguassu.Models;
 using System.Web.Security;
+using System.Text.RegularExpressions;
 
 namespace hotiguassu.Controllers
 { 
@@ -87,15 +88,40 @@ namespace hotiguassu.Controllers
         {
             if (girlsmodels != null )
             {
+                string dtNascimento = Request.Form["DtNacimento"];
                 girlsmodels.situacao = "P";
+                gravaTelefone(girlsmodels);
+                if (dtNascimento != "")
+                {
+                    girlsmodels.DtNacimento = DateTime.Parse(dtNascimento);
+                }
+                
                 db.Configuration.ValidateOnSaveEnabled = false;
+                FormsAuthentication.SetAuthCookie(girlsmodels.login, false);
                 db.GirlsModels.Add(girlsmodels);
                 db.SaveChanges();
-                
                 return RedirectToAction("Index");  
             }
         
             return View(girlsmodels);
+        }
+
+        private void gravaTelefone(GirlsModels girlsmodels)
+        {
+            string Telefone = "";
+            foreach (string key in HttpContext.Request.Form.AllKeys.Where(k => k.StartsWith("opcaoTelefone")))
+            {
+                if (Request.Form[key] != "") {
+                    Telefone = Telefone + Request.Form[key]+";";
+                }
+            }
+            Telefone = Telefone.Replace("-", "");
+            Telefone = Telefone.Replace(")", "");
+            Telefone = Telefone.Replace("(", "");
+            Telefone = Regex.Replace(Telefone, " ", "");
+            Telefone = Telefone.Remove(Telefone.Length - 1, 1);
+            girlsmodels.Telefones = Telefone;
+            Telefone = null;
         }
         
         //

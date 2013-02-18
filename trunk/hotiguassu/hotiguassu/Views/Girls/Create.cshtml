@@ -73,11 +73,11 @@
         <div>
             <fieldset>
             <legend>@Html.LabelFor(model => model.Telefones)</legend>
-            @Html.EditorFor(model => model.Telefones, new { id = "opcaoTelefone1" })
+            <input id="opcaoTelefone1" type="text" name="opcaoTelefone1"/>
             <br />
-            <input id="opcaoTelefone2" type="text"/>
+            <input id="opcaoTelefone2" type="text" name="opcaoTelefone2"/>
             <br />
-            <input id="opcaoTelefone3" type="text"/>
+            <input id="opcaoTelefone3" type="text" name="opcaoTelefone3"/>
             </fieldset>
         </div> 
     
@@ -128,7 +128,7 @@
            @Html.LabelFor(model => model.Senha)
            </div>
            <div>
-            @Html.EditorFor(model => model.Senha)
+            @Html.PasswordFor(model => model.Senha)
         </div> 
 
 

@@ -12,3 +12,9 @@ C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\bin\EntityFramework.xml
 C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\obj\Debug\hotiguassu.dll
 C:\Users\Vilmar\Desktop\hotiguassu\hotiguassu\obj\Debug\hotiguassu.pdb
+C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\bin\hotiguassu.dll
+C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\bin\hotiguassu.pdb
+C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\bin\EntityFramework.dll
+C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\hotiguassu.dll
+C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\hotiguassu.pdb
