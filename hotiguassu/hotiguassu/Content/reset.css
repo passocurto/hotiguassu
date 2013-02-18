@@ -18,7 +18,7 @@ border-radius:3px;
 #Peso,#Altura,#Busto,#Quadris {width: 40px;}
 #DtNacimento{width:66px;}
 #Cabelos{height: 29px;width:150px}
-#Telefones{width: 100px;margin:0 0 8px 0;}
+#opcaoTelefone1 {width: 100px;margin:0 0 8px 0;}
 #opcaoTelefone2 {width: 100px;margin:0 0 8px 0;}
 #opcaoTelefone3 {width: 100px;margin:0 0 8px 0;}
 fieldset #telefone { border:#3f3f3f 1px solid; padding: 10px; border-radius: 5px; width: 145px;}
