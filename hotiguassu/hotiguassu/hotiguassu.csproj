@@ -192,7 +192,6 @@
     <Content Include="Views\Girls\Index.cshtml" />
     <Content Include="Views\Girls\Create.cshtml" />
     <Content Include="Views\Girls\Delete.cshtml" />
-    <Content Include="Views\Girls\Details.cshtml" />
     <Content Include="Views\Girls\Edit.cshtml" />
     <None Include="Views\Home\Garotas.cshtml" />
     <None Include="Views\Home\AboutGirls.cshtml" />

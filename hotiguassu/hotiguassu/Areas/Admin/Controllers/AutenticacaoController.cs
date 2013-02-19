@@ -33,9 +33,8 @@ namespace hotiguassu.Areas.Admin.Controllers
 
                 if (logado)
                 {
-                    FormsAuthentication.SetAuthCookie(usu.Login, false);
-                    
-                        return RedirectToAction("Admin", "");
+                    FormsAuthentication.SetAuthCookie(usu.Login, true);
+                    return RedirectToAction("Admin", "");
                 }
                 else
                 {
@@ -45,6 +44,8 @@ namespace hotiguassu.Areas.Admin.Controllers
             }
                  return View("LogOn");
             }
+
+      
 
 
 
