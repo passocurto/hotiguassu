@@ -10,7 +10,7 @@ using System.Web.Security;
 using System.Text.RegularExpressions;
 
 namespace hotiguassu.Controllers
-{ 
+{
     public class GirlsController : Controller
     {
         private hotiguassuContext db = new hotiguassuContext();
@@ -24,7 +24,7 @@ namespace hotiguassu.Controllers
                     select u;
 
             var usu = q.FirstOrDefault();
-            
+
             var logado = false;
             if (usu.Senha == models.Senha)
                 logado = true;
@@ -32,6 +32,7 @@ namespace hotiguassu.Controllers
             if (logado)
             {
                 FormsAuthentication.SetAuthCookie(models.login, false);
+                GravaCookieGirl(Convert.ToString(usu.idGirl));
                 return View("index");
             }
             else
@@ -41,6 +42,25 @@ namespace hotiguassu.Controllers
             return View("LogOn");
         }
 
+        private void GravaCookieGirl(string IdGirl)
+        {
+            HttpCookie cookieidGirl;
+
+            if (Request.Cookies["idGirl"] == null)
+            {
+                cookieidGirl = new HttpCookie("idGirl");
+            }
+            else
+            {
+                cookieidGirl = Request.Cookies["idGirl"];
+            }
+
+            cookieidGirl.Value = IdGirl;
+
+            Response.Cookies.Add(cookieidGirl);
+
+            cookieidGirl.Expires = DateTime.Now.AddDays(1);
+        }
 
 
         //
@@ -48,7 +68,7 @@ namespace hotiguassu.Controllers
 
         public ViewResult Index()
         {
-             HttpCookie authCookie = FormsAuthentication.GetAuthCookie("login", false);
+            HttpCookie authCookie = FormsAuthentication.GetAuthCookie("login", false);
 
             return View(db.GirlsModels.ToList());
         }
@@ -69,7 +89,7 @@ namespace hotiguassu.Controllers
         {
 
             var model = new GirlsModels();
-                model.TipodeCabelo = new[]
+            model.TipodeCabelo = new[]
                 {
                     // TODO: those values could come from a database for example
                     new SelectListItem { Value = "Loira", Text = "Loira" },
@@ -77,8 +97,8 @@ namespace hotiguassu.Controllers
                     new SelectListItem { Value = "Ruiva", Text = "Ruiva" },
                 };
 
-                return View(model);
-        } 
+            return View(model);
+        }
 
         //
         // POST: /Girls/Create
@@ -86,7 +106,7 @@ namespace hotiguassu.Controllers
         [HttpPost]
         public ActionResult Create(GirlsModels girlsmodels)
         {
-            if (girlsmodels != null )
+            if (girlsmodels != null)
             {
                 string dtNascimento = Request.Form["DtNacimento"];
                 girlsmodels.situacao = "P";
@@ -95,14 +115,14 @@ namespace hotiguassu.Controllers
                 {
                     girlsmodels.DtNacimento = DateTime.Parse(dtNascimento);
                 }
-                
+
                 db.Configuration.ValidateOnSaveEnabled = false;
                 FormsAuthentication.SetAuthCookie(girlsmodels.login, false);
                 db.GirlsModels.Add(girlsmodels);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
-        
+
             return View(girlsmodels);
         }
 
@@ -111,8 +131,9 @@ namespace hotiguassu.Controllers
             string Telefone = "";
             foreach (string key in HttpContext.Request.Form.AllKeys.Where(k => k.StartsWith("opcaoTelefone")))
             {
-                if (Request.Form[key] != "") {
-                    Telefone = Telefone + Request.Form[key]+";";
+                if (Request.Form[key] != "")
+                {
+                    Telefone = Telefone + Request.Form[key] + ";";
                 }
             }
             Telefone = Telefone.Replace("-", "");
@@ -123,10 +144,10 @@ namespace hotiguassu.Controllers
             girlsmodels.Telefones = Telefone;
             Telefone = null;
         }
-        
+
         //
         // GET: /Girls/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             GirlsModels girlsmodels = db.GirlsModels.Find(id);
@@ -139,18 +160,20 @@ namespace hotiguassu.Controllers
         [HttpPost]
         public ActionResult Edit(GirlsModels girlsmodels)
         {
-            if (ModelState.IsValid)
+            if (girlsmodels != null)
             {
                 db.Entry(girlsmodels).State = EntityState.Modified;
+                gravaTelefone(girlsmodels);
+                db.Configuration.ValidateOnSaveEnabled = false;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(girlsmodels);
+            return View("Index");
         }
 
         //
         // GET: /Girls/Delete/5
- 
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             GirlsModels girlsmodels = db.GirlsModels.Find(id);
@@ -159,11 +182,11 @@ namespace hotiguassu.Controllers
 
         //
         // POST: /Girls/Delete/5
-
-        [HttpPost, ActionName("Delete")]
-        public ActionResult DeleteConfirmed(int id)
-        {            
-            GirlsModels girlsmodels = db.GirlsModels.Find(id);
+        
+        [HttpPost]
+        public ActionResult Delete(string id)
+        {
+            GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
             db.GirlsModels.Remove(girlsmodels);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -183,15 +206,16 @@ namespace hotiguassu.Controllers
         {
             return View();
         }
-  
+
 
         [HttpPost]
         public ActionResult Register(GirlsModels model)
         {
-            if (model != null) {
+            if (model != null)
+            {
                 db.GirlsModels.Add(model);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
         }
