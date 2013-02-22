@@ -71,17 +71,26 @@
             @{
     string str = Model.Telefones;
     string[] telefones = str.Split(';');
-    int contador = 1;
-    foreach (string tel in telefones)
+    
+    for (int i = 0; i < 3; i++)
     {
-        if (tel != "")
+        string tel = "";
+        if (i < telefones.Length)
         {
-                <input id="opcaoTelefone@(contador)" type="text" name="opcaoTelefone@(contador)" value="@tel"/>
-            contador = contador + 1;
-                <br />    
+            tel = telefones[i];
         }
-    }
+        <input id="opcaoTelefone@(i+1)" type="text" name="opcaoTelefone1" value="@tel"/>
+        <br />    
+    } 
+   @*             <input id="opcaoTelefone1" type="text" name="opcaoTelefone1" value="@telefone1"/>
+                <br />    
+                <input id="opcaoTelefone2" type="text" name="opcaoTelefone1" value="@telefone2"/>
+                <br />    
+                <input id="opcaoTelefone3" type="text" name="opcaoTelefone1" value="@telefone3"/>
+                <br />   *@ 
             }
+        
+            
             </fieldset>
         </div> 
     
@@ -157,7 +166,7 @@
           </div>
       </div>
   
-      
+
 </div>
 }
 

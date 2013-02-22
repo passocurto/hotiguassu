@@ -81,9 +81,32 @@
     <Compile Include="Models\hotiguassuContext.cs" />
     <Compile Include="ModuloGeral.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Upload\FilesStatus.cs" />
+    <Compile Include="Upload\UploadHandler.ashx.cs">
+      <DependentUpon>UploadHandler.ashx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\Admin\config\menu.xml" />
+    <Content Include="Content\Bootstrap\bootstrap-image-gallery.min.css" />
+    <Content Include="Content\Bootstrap\bootstrap-image-gallery.min.js" />
+    <Content Include="Content\Bootstrap\bootstrap-responsive.min.css" />
+    <Content Include="Content\Bootstrap\bootstrap.min.css" />
+    <Content Include="Content\Bootstrap\bootstrap.min.js" />
+    <Content Include="Content\FileUpload\canvas-to-blob.min.js" />
+    <Content Include="Content\FileUpload\jquery.fileupload-ip.js" />
+    <Content Include="Content\FileUpload\jquery.fileupload-ui.css" />
+    <Content Include="Content\FileUpload\jquery.fileupload-ui.js" />
+    <Content Include="Content\FileUpload\jquery.fileupload.js" />
+    <Content Include="Content\FileUpload\jquery.iframe-transport.js" />
+    <Content Include="Content\FileUpload\load-image.min.js" />
+    <Content Include="Content\FileUpload\locale.js" />
+    <Content Include="Content\FileUpload\main.js" />
+    <Content Include="Content\FileUpload\tmpl.min.js" />
+    <Content Include="Content\images\generalFile.png" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\progressbar.gif" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\ie.css" />
     <Content Include="Content\images\banner.jpg" />
@@ -157,6 +180,8 @@
     <Content Include="Content\images\slide-5.jpg" />
     <Content Include="Content\images\transp.png" />
     <Content Include="Content\jquery.fancybox-1.3.4.css" />
+    <Content Include="Content\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Content\jquery.fileupload-ui.css" />
     <Content Include="Content\reset.css" />
     <Content Include="Content\skin-2.css" />
     <Content Include="Content\skin.css" />
@@ -168,8 +193,11 @@
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.maskedinput-1.3.min.js" />
     <Content Include="Scripts\jquery.maskMoney.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
@@ -193,6 +221,8 @@
     <Content Include="Views\Girls\Create.cshtml" />
     <Content Include="Views\Girls\Delete.cshtml" />
     <Content Include="Views\Girls\Edit.cshtml" />
+    <Content Include="Views\Girls\Fotos.cshtml" />
+    <Content Include="Upload\UploadHandler.ashx" />
     <None Include="Views\Home\Garotas.cshtml" />
     <None Include="Views\Home\AboutGirls.cshtml" />
     <None Include="Views\Home\About.cshtml" />
@@ -230,6 +260,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Fotos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
