@@ -71,7 +71,7 @@
             @{
     string str = Model.Telefones;
     string[] telefones = str.Split(';');
-    
+
     for (int i = 0; i < 3; i++)
     {
         string tel = "";
@@ -79,7 +79,7 @@
         {
             tel = telefones[i];
         }
-        <input id="opcaoTelefone@(i+1)" type="text" name="opcaoTelefone1" value="@tel"/>
+        <input id="opcaoTelefone@(i + 1)" type="text" name="opcaoTelefone1" value="@tel"/>
         <br />    
     } 
    @*             <input id="opcaoTelefone1" type="text" name="opcaoTelefone1" value="@telefone1"/>
