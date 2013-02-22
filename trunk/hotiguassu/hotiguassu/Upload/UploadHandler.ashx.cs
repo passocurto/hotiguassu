@@ -79,8 +79,8 @@ namespace jQuery_File_Upload.MVC3.Upload
         // Delete file from the server
         private void DeleteFile(HttpContext context)
         {
-            var filePath = StorageRoot + (string)HttpContext.Current.Request.Cookies["idGirl"].Value + "\\" + context.Request["f"];
-            var fileMinhaturaPath = StorageRoot + (string)HttpContext.Current.Request.Cookies["idGirl"].Value + "\\" + "Minhatura" + "\\" + context.Request["f"];
+            var filePath = StorageRoot + (string)HttpContext.Current.Session["idGirl"] + "\\" + context.Request["f"];
+            var fileMinhaturaPath = StorageRoot + (string)HttpContext.Current.Session["idGirl"] + "\\" + "Minhatura" + "\\" + context.Request["f"];
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);
@@ -138,8 +138,8 @@ namespace jQuery_File_Upload.MVC3.Upload
                 var file = context.Request.Files[i];
                 var fu = new FileUpload();
                 criaPastaMinhaturaGarota();
-                ResizeStream(205, file.InputStream, StorageRoot + (string)HttpContext.Current.Request.Cookies["idGirl"].Value + "\\" + "Minhatura" + "\\" + Path.GetFileName(file.FileName));
-                var fullPath = StorageRoot + (string)HttpContext.Current.Request.Cookies["idGirl"].Value + "\\" + Path.GetFileName(file.FileName);
+                ResizeStream(205, file.InputStream, StorageRoot + (string)HttpContext.Current.Session["idGirl"] + "\\" + "Minhatura" + "\\" + Path.GetFileName(file.FileName));
+                var fullPath = StorageRoot + (string)HttpContext.Current.Session["idGirl"] + "\\" + Path.GetFileName(file.FileName);
                 ResizeImage(file.InputStream, fullPath , 500, 80);
                 string fullName = Path.GetFileName(file.FileName);
                 statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));

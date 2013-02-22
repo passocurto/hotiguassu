@@ -9,6 +9,7 @@ using hotiguassu.Models;
 using System.Web.Security;
 using System.Text.RegularExpressions;
 
+
 namespace hotiguassu.Controllers
 {
     public class GirlsController : Controller
@@ -32,7 +33,7 @@ namespace hotiguassu.Controllers
             if (logado)
             {
                 FormsAuthentication.SetAuthCookie(models.login, false);
-                GravaCookieGirl(Convert.ToString(usu.idGirl));
+                GravaSessionGirl(Convert.ToString(usu.idGirl));
                 return View("index");
             }
             else
@@ -42,24 +43,10 @@ namespace hotiguassu.Controllers
             return View("LogOn");
         }
 
-        private void GravaCookieGirl(string IdGirl)
+        private void GravaSessionGirl(string IdGirl)
         {
-            HttpCookie cookieidGirl;
-
-            if (Request.Cookies["idGirl"] == null)
-            {
-                cookieidGirl = new HttpCookie("idGirl");
-            }
-            else
-            {
-                cookieidGirl = Request.Cookies["idGirl"];
-            }
-
-            cookieidGirl.Value = IdGirl;
-
-            Response.Cookies.Add(cookieidGirl);
-
-            cookieidGirl.Expires = DateTime.Now.AddDays(1);
+            Session["idGirl"] = IdGirl;
+            Session.Timeout = 30;
         }
 
 
@@ -146,10 +133,18 @@ namespace hotiguassu.Controllers
         //
         // GET: /Girls/Edit/
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(string id)
         {
-            GirlsModels girlsmodels = db.GirlsModels.Find(id);
-            return View(girlsmodels);
+            if (id != null)
+            {
+                GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
+                return View(girlsmodels);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            
         }
 
         //
@@ -239,7 +234,7 @@ namespace hotiguassu.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-
+            Session.Remove("idGirl"); 
             return RedirectToAction("Index", "Home");
         }
 

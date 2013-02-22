@@ -28,62 +28,10 @@ namespace hotiguassu.Controllers
                     where u.Login == model.Login select u;
 
             var usu = q.FirstOrDefault();
-
-            //if (usu != null)
-            //{
-            //    byte[] senhaAtual = ModuloGeral.encrypt(model.Password);
-            //    //var logado = ModuloGeral.comparepwd(usu.Password, senhaAtual);
-             
-            //        if (logado)
-            //        {
-            //            FormsAuthentication.SetAuthCookie(model.UserName, false);
-            //            if (!String.IsNullOrEmpty(returnUrl))
-            //            {
-            //                return Redirect(returnUrl);
-            //            }
-            //            else
-            //            {
-            //                return RedirectToAction("Admin", "");
-            //            }
-            //        }
-            //        else
-            //        {
-            //            ModelState.AddModelError("", "Usuário ou senha incorretos.");
-            //        }
-            //    }
             return View();
-           }
 
-        //
-        // POST: /Account/LogOn
+        }
 
-        //[HttpPost]
-        //public ActionResult LogOn(LogOnModel model, string returnUrl)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        if (Membership.ValidateUser(model.UserName, model.Password))
-        //        {
-        //            FormsAuthentication.SetAuthCookie(model.UserName, model.RememberMe);
-        //            if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
-        //                && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
-        //            {
-        //                return Redirect(returnUrl);
-        //            }
-        //            else
-        //            {
-        //                return RedirectToAction("Index", "Girls");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            ModelState.AddModelError("", "Usuario ou senha Incorretos, Por Favor Verifique !");
-        //        }
-        //    }
-
-        //    // If we got this far, something failed, redisplay form
-        //    return View(model);
-        //}
 
         //
         // GET: /Account/LogOff
@@ -91,7 +39,6 @@ namespace hotiguassu.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-
             return RedirectToAction("Index", "Home");
         }
 

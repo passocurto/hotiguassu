@@ -2,10 +2,10 @@
 <nav>  
     <ul class="menu">
     <li class="current li-none">@Html.ActionLink("Girls", "Index", "Girls")</li>
-    <li>@Html.ActionLink("Editar", "Edit", "Girls", new { id = Request.Cookies["idGirl"].Value }, null)</li>
+    <li>@Html.ActionLink("Editar", "Edit", "Girls", new { id = Session["idGirl"] }, null)</li>
     <li>@Html.ActionLink("Fotos", "Fotos", "Girls")</li>
     <li class="li-left li-none"></li>
-    <li style="margin-left: 205px;">@Html.ActionLink("Deletar", "Delete", "Girls", new { id = Request.Cookies["idGirl"].Value }, null)</li>
+    <li style="margin-left: 205px;">@Html.ActionLink("Deletar", "Delete", "Girls", new { id = Session["idGirl"] }, null)</li>
     <li style="color:White">@Html.Partial("_LogOnPartial")</li>
     </ul>
 </nav>
