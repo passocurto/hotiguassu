@@ -169,26 +169,41 @@ namespace hotiguassu.Controllers
         [HttpGet]
         public ActionResult Fotos()
         {
-            return View();
+            if (Session["idGirl"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
 
 
         //
         // GET: /Girls/Delete/
         [HttpGet]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string id)
         {
-            GirlsModels girlsmodels = db.GirlsModels.Find(id);
-            return View(girlsmodels);
+            if (id != null)
+            {
+                GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
+                return View(girlsmodels);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+           
         }
 
         //
         // POST: /Girls/Delete/
 
         [HttpPost]
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int idGirl)
         {
-            GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
+            GirlsModels girlsmodels = db.GirlsModels.Find(idGirl);
             db.Entry(girlsmodels).State = EntityState.Modified;
             girlsmodels.situacao = "C";
             db.Configuration.ValidateOnSaveEnabled = false;
