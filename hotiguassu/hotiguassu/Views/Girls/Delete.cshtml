@@ -26,118 +26,15 @@
 
        @Html.HiddenFor(model => model.idGirl)
        @Html.HiddenFor(model => model.situacao)
-
-     <div id="contentLeft" >
     
-        <div>
-        <div>
-            @Html.LabelFor(model => model.Nome)
-            </div>
-            @Html.TextBoxFor(model => model.Nome, new { @readonly = "readonly" })
-        </div> 
-    
-       <div>
-           @Html.LabelFor(model => model.DtNacimento)
-           </div>
-           <div>
-            @Html.TextBoxFor(model => model.DtNacimento, new { @readonly = "readonly" })
-        </div> 
-    
-        <div>
-            <fieldset>
-            <legend>@Html.LabelFor(model => model.Telefones)</legend>
-            @{
-    string str = Model.Telefones;
-    string[] telefones = str.Split(';');
-    int contador = 1;
-    foreach (string tel in telefones)
-    {
-        if (tel != "")
-        {
-                <input id="opcaoTelefone@(contador)" type="text" name="opcaoTelefone@(contador)" value="@tel" readonly="readonly"/>
-            contador = contador + 1;
-                <br />    
-        }
-    }
-            }
-            </fieldset>
-        </div> 
-    
-         <div>
-            <div id="AlturaPeso">
-            <label id=LabelAltura>Altura</label>
-            <label id=LabelPeso>Peso </label>  
-            </div>
-            @Html.TextBoxFor(model => model.Altura, new { @readonly = "readonly" })  ( M )
-            @Html.TextBoxFor(model => model.Peso, new { @readonly = "readonly" })  ( Kg )
-        </div>
+  <div id="BoasVindas">
+    <p> <i> Tem Certeza que Deseja Deletar sua Conta !</i> </p>  <br /> <br /> <br />
 
-        <div>
-         <div id="bustoQuadril">
-            <label id=LabelQuadril>Quadril</label>
-            <label id=LabelBusto>Busto </label>            
-            </div>
-            @Html.TextBoxFor(model => model.Quadris, new { @readonly = "readonly" }) (Cm)
-            @Html.TextBoxFor(model => model.Busto, new { @readonly = "readonly" }) ( Cm )
-        </div>
-        
-    
-     </div> 
-    <div id="contentRigth" >
-
-        <div>
-        <div>
-        @Html.LabelFor(model => model.Cabelos)
-        </div>
-        @{
-    var lst = new List<SelectListItem>();
-    lst.Add(new SelectListItem() { Text = "Loira", Value = "Loira" });
-    lst.Add(new SelectListItem() { Text = "Morena", Value = "Morena" });
-    lst.Add(new SelectListItem() { Text = "Ruiva", Value = "Ruiva" });
-    Model.TipodeCabelo = lst;
-            @Html.DropDownListFor(x => x.Cabelos, Model.TipodeCabelo, new { @disabled = "disabled" })          
-       }
- </div>
-
-        <div>
-           @Html.LabelFor(model => model.email)
-           </div>
-           <div>
-            @Html.TextBoxFor(model => model.email, new { @readonly = "readonly" })
-        </div> 
-
-       <div>
-           @Html.LabelFor(model => model.login)
-           </div>
-           <div>
-            @Html.TextBoxFor(model => model.login, new { @readonly = "readonly" })
-        </div> 
-
-        <div>
-           @Html.LabelFor(model => model.Senha)
-           </div>
-           <div>
-            @Html.TextBoxFor(model => model.Senha, new { @readonly = "readonly" })
-        </div> 
-
-
-       <div>
-        <div>
-            @Html.LabelFor(model => model.Biografia)
-        </div>
-            @Html.TextAreaFor(model => model.Biografia, new { @readonly = "readonly", style = "margin: 0px; height: 120px; width: 248px;" })
-        </div>
-
-        <div>
-          <div class="btns">
+  </div>
+     <div class="btns">
             <a href="/" class="link-1" id="cancelar" >Cancelar</a>
             <a href="#" class="link-1" id="submit">Enviar</a>
           </div>
-      </div>
-  
-      
-</div>
 }
 
     </section>
-

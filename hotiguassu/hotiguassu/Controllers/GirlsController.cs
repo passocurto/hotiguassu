@@ -73,14 +73,6 @@ namespace hotiguassu.Controllers
             return View(db.GirlsModels.ToList());
         }
 
-        //
-        // GET: /Girls/Details/5
-
-        public ViewResult Details(int id)
-        {
-            GirlsModels girlsmodels = db.GirlsModels.Find(id);
-            return View(girlsmodels);
-        }
 
         //
         // GET: /Girls/Create
@@ -102,7 +94,7 @@ namespace hotiguassu.Controllers
 
         //
         // POST: /Girls/Create
-
+        
         [HttpPost]
         public ActionResult Create(GirlsModels girlsmodels)
         {
@@ -116,7 +108,7 @@ namespace hotiguassu.Controllers
                     girlsmodels.DtNacimento = DateTime.Parse(dtNascimento);
                 }
 
-                db.Configuration.ValidateOnSaveEnabled = false;
+                db.Configuration.ValidateOnSaveEnabled = true;
                 FormsAuthentication.SetAuthCookie(girlsmodels.login, false);
                 db.GirlsModels.Add(girlsmodels);
                 db.SaveChanges();
@@ -129,24 +121,30 @@ namespace hotiguassu.Controllers
         private void gravaTelefone(GirlsModels girlsmodels)
         {
             string Telefone = "";
-            foreach (string key in HttpContext.Request.Form.AllKeys.Where(k => k.StartsWith("opcaoTelefone")))
+            string str = Request.Form["opcaoTelefone1"];
+            string[] phones = str.Split(',');
+            foreach (var telefone in phones)
             {
-                if (Request.Form[key] != "")
+                if (telefone != "")
                 {
-                    Telefone = Telefone + Request.Form[key] + ";";
+                    Telefone = Telefone + telefone + ";";
                 }
             }
-            Telefone = Telefone.Replace("-", "");
-            Telefone = Telefone.Replace(")", "");
-            Telefone = Telefone.Replace("(", "");
-            Telefone = Regex.Replace(Telefone, " ", "");
-            Telefone = Telefone.Remove(Telefone.Length - 1, 1);
-            girlsmodels.Telefones = Telefone;
-            Telefone = null;
+            if (Telefone.Length > 0)
+            {
+                Telefone = Telefone.Replace("-", "");
+                Telefone = Telefone.Replace(")", "");
+                Telefone = Telefone.Replace("(", "");
+                Telefone = Regex.Replace(Telefone, " ", "");
+                Telefone = Telefone.Remove(Telefone.Length - 1, 1);
+                girlsmodels.Telefones = Telefone;
+                Telefone = null;
+            }
+
         }
 
         //
-        // GET: /Girls/Edit/5
+        // GET: /Girls/Edit/
 
         public ActionResult Edit(int id)
         {
@@ -155,7 +153,7 @@ namespace hotiguassu.Controllers
         }
 
         //
-        // POST: /Girls/Edit/5
+        // POST: /Girls/Edit/
 
         [HttpPost]
         public ActionResult Edit(GirlsModels girlsmodels)
@@ -172,7 +170,16 @@ namespace hotiguassu.Controllers
         }
 
         //
-        // GET: /Girls/Delete/5
+        // GET: /Girls/Fotos/
+        [HttpGet]
+        public ActionResult Fotos()
+        {
+            return View();
+        }
+
+
+        //
+        // GET: /Girls/Delete/
         [HttpGet]
         public ActionResult Delete(int id)
         {
@@ -181,13 +188,15 @@ namespace hotiguassu.Controllers
         }
 
         //
-        // POST: /Girls/Delete/5
-        
+        // POST: /Girls/Delete/
+
         [HttpPost]
         public ActionResult Delete(string id)
         {
             GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
-            db.GirlsModels.Remove(girlsmodels);
+            db.Entry(girlsmodels).State = EntityState.Modified;
+            girlsmodels.situacao = "C";
+            db.Configuration.ValidateOnSaveEnabled = false;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
