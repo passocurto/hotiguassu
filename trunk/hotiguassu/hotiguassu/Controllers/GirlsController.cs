@@ -191,15 +191,6 @@ namespace hotiguassu.Controllers
         {
             if (Session["idGirl"] != null)
             {
-                var caminho = "~/Fotos/" + Session["idGirl"];
-                DirectoryInfo arquivos = new DirectoryInfo(Server.MapPath(caminho));
-                FileInfo[] files = arquivos.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
-                var lst = new List<SelectListItem>();
-                foreach (var fileInfo in files)
-                {
-                    lst.Add(new SelectListItem() { Text = fileInfo.Name, Value = fileInfo.Name });
-                }
-                ViewBag.Fotos = lst;
                 return View();
             }
             else
@@ -223,6 +214,8 @@ namespace hotiguassu.Controllers
                     if (aquivo.ToUpper().Contains(DeleteThis.ToUpper()))
                     {
                         System.IO.File.Delete(Server.MapPath(caminho) + "/" + fileName);
+                        //Deleta Minhatura
+                        System.IO.File.Delete(Server.MapPath(caminho) + "/" + "Minhatura"+ "/" + fileName);
                     }
                 }
 
