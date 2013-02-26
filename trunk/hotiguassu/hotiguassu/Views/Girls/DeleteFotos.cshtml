@@ -2,16 +2,24 @@
     ViewBag.Title = "Inicio";
     Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
+
+<link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/Bootstrap/bootstrap.min.css")"/>
+
+    <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/reset.css")">
+    <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/style.css")">
+    <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/slider.css")">
+    <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/skin.css")">
+
 <title>Garotas </title>
 <div class="header2">
     <div class="subpages2-nav">
         @Html.Partial("_MenuGirlPartial")
     </div>
 </div>
-<section id="contentGirls">
+<section id="contentGirls" style="padding-top: 40px;display: table;">
 
-  <div id="BoasVindas">
-   <ul>
+  <div style="text-align: center;">
+   <ul  style="margin: 10px;">
      @{
          var idGirl = Session["idGirl"];
          var caminho = "~/Fotos/" + idGirl;
@@ -25,9 +33,10 @@
          foreach (var item in lst)
          {
             <li>
-                <img id="@item.Text" src="@Url.Content("~/Fotos/" + idGirl + "/" + item.Text)"/>
-                <a href="/Girls/DeleteFotos/@item.Text" class="photo-delete-link">Deletar</a>
-            </li>
+                <img id="@item.Text" src="@Url.Content("~/Fotos/" + idGirl + "/" + item.Text)" style="margin: 0px 0px 40px 0px;"/>
+                <a href="/Girls/DeleteFotos/@item.Text" class="btn btn-danger delete">
+                    <span>Deletar</span></a>
+                </li>
          }
         }
     </ul>
@@ -35,7 +44,7 @@
 
   </section>
 <script>
-    $('.photo-delete-link').click(function (e) {
+    $('.btn').click(function (e) {
         $.ajax({
             url: this.href,
             dataType: "text json",

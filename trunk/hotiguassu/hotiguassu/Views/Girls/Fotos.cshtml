@@ -39,7 +39,7 @@
         @Html.Partial("_MenuGirlPartial")
     </div>
 </div>
-<section id="contentGirls" style="display: table;">
+<section id="contentGirls" style="display: table;position: relative;">
 
 
     <form id="fileupload" action="../../Upload/UploadHandler.ashx" method="post" enctype="multipart/form-data">
@@ -49,20 +49,20 @@
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
-                    <span>Add files...</span>
+                    <span>Add Fotos...</span>
                     <input type="file" name="files[]" multiple>
                 </span>
                 <button type="submit" class="btn btn-primary start">
                     <i class="icon-upload icon-white"></i>
-                    <span>Start upload</span>
+                    <span>Iniciar upload</span>
                 </button>
                 <button type="reset" class="btn btn-warning cancel">
                     <i class="icon-ban-circle icon-white"></i>
-                    <span>Cancel upload</span>
+                    <span>Cancelar upload</span>
                 </button>
                 <button type="button" class="btn btn-danger delete">
                     <i class="icon-trash icon-white"></i>
-                    <span>Delete</span>
+                    <span>Deletar</span>
                 </button>
                 <input type="checkbox" class="toggle">
             </div>
@@ -82,19 +82,19 @@
     
     <!-- modal-gallery is the modal dialog used for the image gallery -->
     <div id="modal-gallery" class="modal modal-gallery hide fade">
-        <div class="modal-header">
+        <div class="modal-header"  style="margin: 10px 10px 0px 335px;">
             <a class="close" data-dismiss="modal">&times;</a>
             <h3 class="modal-title"></h3>
         </div>
         <div class="modal-body"><div class="modal-image"></div></div>
         <div class="modal-footer">
             <a class="btn btn-primary modal-next">
-                <span>Next</span>
+                <span>Proximo</span>
                 <i class="icon-arrow-right icon-white"></i>
             </a>
             <a class="btn btn-info modal-prev">
                 <i class="icon-arrow-left icon-white"></i>
-                <span>Previous</span>
+                <span>Anterior</span>
             </a>
             <a class="btn btn-success modal-play modal-slideshow" data-slideshow="5000">
                 <i class="icon-play icon-white"></i>
@@ -117,9 +117,9 @@
         {% if (file.error) { %}
             <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
         {% } else if (o.files.valid && !i) { %}
-            <td>
+        <!--     <td>
                 <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>
-            </td>
+            </td>-->
             <td class="start">{% if (!o.options.autoUpload) { %}
                 <button class="btn btn-primary">
                     <i class="icon-upload icon-white"></i>
@@ -149,13 +149,13 @@
             <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
         {% } else { %}
             <td class="preview">{% if (file.thumbnail_url) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
+                <a href="{%=file.url%}" style="color:#bf96c7;" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>
             {% } %}</td>
             <td class="name">
-                <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+                <a href="{%=file.url%}" title="{%=file.name%}" style="color:#bf96c7;" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
             </td>
-            <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>
-            <td colspan="2"></td>
+            <td class="size"><span style="color:#bf96c7;">{%=o.formatFileSize(file.size)%}</span></td>
+           <!--   <td colspan="2"></td>-->
         {% } %}
         <td class="delete">
             <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">
@@ -168,6 +168,9 @@
 {% } %}
 </script>
 
-
-
+    
+    <a class="btn btn-danger delete" href="/Girls/Deletefotos" style="bottom: 0;position: absolute;right: 0;margin: 50px;">
+        <span>Deletar Fotos do Album</span>
+        <i class="icon-arrow-right icon-white"></i>
+     </a>
 </section>
