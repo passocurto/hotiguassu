@@ -76,6 +76,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FotosModels.cs" />
     <Compile Include="Models\NotificacaoEmail.cs" />
     <Compile Include="Models\UsuarioModels.cs" />
     <Compile Include="Models\GirlsModels.cs" />
