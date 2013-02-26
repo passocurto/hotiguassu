@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using hotiguassu.Models;
 using System.Web.Security;
+using System.Configuration;
 
 namespace hotiguassu.Areas.Admin.Controllers
 {
-    public class AutenticacaoController : Controller 
+    public class AutenticacaoController : Controller
     {
 
         private hotiguassuContext db = new hotiguassuContext();
@@ -19,35 +20,21 @@ namespace hotiguassu.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogOn(UsuarioModels usuario)
+        public ActionResult Index(UsuarioModels usuario)
         {
-            var q = from u in db.UsuarioModels
-                    where u.Login == usuario.Login && u.Senha == usuario.Senha
-                    select u;
-
-            var usu = q.FirstOrDefault();
-
-            if (usu != null)
+            var usuLogin = ConfigurationManager.AppSettings["Login"].ToString();
+            var usuSenha = ConfigurationManager.AppSettings["Senha"].ToString();
+            if (Request.Form["login"].Equals(usuLogin) && Request.Form["senha"].Equals(usuSenha))
             {
-                var logado = true;
-
-                if (logado)
-                {
-                    FormsAuthentication.SetAuthCookie(usu.Login, true);
-                    return RedirectToAction("Admin", "");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Usuário ou senha incorretos.");
-                }
-
+                FormsAuthentication.SetAuthCookie("Administrador", true);
+                return RedirectToAction("Index","Home");
             }
-                 return View("LogOn");
+            else
+            {
+                ModelState.AddModelError("", "Usuário ou senha incorretos.");
             }
 
-      
-
-
-
+            return View("LogOn");
+        }
     }
 }
