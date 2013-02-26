@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using hotiguassu.Models;
 using System.Web.Security;
 using System.Text.RegularExpressions;
+using System.IO;
 
 
 namespace hotiguassu.Controllers
@@ -53,11 +54,17 @@ namespace hotiguassu.Controllers
         //
         // GET: /Girls/
 
-        public ViewResult Index()
+        public ActionResult Index()
         {
             HttpCookie authCookie = FormsAuthentication.GetAuthCookie("login", false);
-
-            return View(db.GirlsModels.ToList());
+            if (Session["idGirl"] != null)
+            {
+                return View(db.GirlsModels.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Index","Home");
+            }
         }
 
 
@@ -179,6 +186,55 @@ namespace hotiguassu.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult DeleteFotos()
+        {
+            if (Session["idGirl"] != null)
+            {
+                var caminho = "~/Fotos/" + Session["idGirl"];
+                DirectoryInfo arquivos = new DirectoryInfo(Server.MapPath(caminho));
+                FileInfo[] files = arquivos.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
+                var lst = new List<SelectListItem>();
+                foreach (var fileInfo in files)
+                {
+                    lst.Add(new SelectListItem() { Text = fileInfo.Name, Value = fileInfo.Name });
+                }
+                ViewBag.Fotos = lst;
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult DeleteFotos(string fileName)
+        {
+
+            if (Session["idGirl"] != null)
+            {
+                var caminho = "~/Fotos/" + Session["idGirl"];
+                string DeleteThis = fileName;
+                string[] arquivos = Directory.GetFiles(Server.MapPath(caminho));
+                foreach (string aquivo in arquivos)
+                {
+                    if (aquivo.ToUpper().Contains(DeleteThis.ToUpper()))
+                    {
+                        System.IO.File.Delete(Server.MapPath(caminho) + "/" + fileName);
+                    }
+                }
+
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+        }
+
 
         //
         // GET: /Girls/Delete/
@@ -252,6 +308,8 @@ namespace hotiguassu.Controllers
             Session.Remove("idGirl"); 
             return RedirectToAction("Index", "Home");
         }
+
+       
 
     }
 }
