@@ -31,9 +31,7 @@ namespace hotiguassu.Areas.Admin.Controllers
 
             if (login.ToString() != "")
             {
-                var usuario = db.UsuarioModels.Where(x => x.Login == login).FirstOrDefault();
-
-                if (usuario.Login == login.ToString())
+                if ("Administrador" == login.ToString())
                 {
                     return View();
                 }
