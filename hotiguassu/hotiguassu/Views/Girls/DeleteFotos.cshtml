@@ -2,43 +2,49 @@
     ViewBag.Title = "Inicio";
     Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
-
-<title> Garotas </title>
-  
-      <div class="header2">
-        <div class="subpages2-nav">
-               @Html.Partial("_MenuGirlPartial")
-        </div>
-    </div>   
-
-
-  <section id="contentGirls">
+<title>Garotas </title>
+<div class="header2">
+    <div class="subpages2-nav">
+        @Html.Partial("_MenuGirlPartial")
+    </div>
+</div>
+<section id="contentGirls">
 
   <div id="BoasVindas">
    <ul>
      @{
-     var idGirl = Session["idGirl"];
-     foreach (var item in ViewBag.Fotos) {
+         var idGirl = Session["idGirl"];
+         var caminho = "~/Fotos/" + idGirl;
+         DirectoryInfo arquivos = new DirectoryInfo(Server.MapPath(caminho));
+         FileInfo[] files = arquivos.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
+         var lst = new List<SelectListItem>();
+         foreach (var fileInfo in files)
+         {
+             lst.Add(new SelectListItem() { Text = fileInfo.Name, Value = fileInfo.Name });
+         }
+         foreach (var item in lst)
+         {
             <li>
-                <img src="@Url.Content("~/Fotos/" + idGirl + "/" + item.Text)"/>
+                <img id="@item.Text" src="@Url.Content("~/Fotos/" + idGirl + "/" + item.Text)"/>
                 <a href="/Girls/DeleteFotos/@item.Text" class="photo-delete-link">Deletar</a>
             </li>
-        }
+         }
         }
     </ul>
   </div>
 
   </section>
-
-  <script>
-      $('.photo-delete-link').click(function (e) {
-          $.ajax({
-              url: this.href,
-              dataType: "text json",
-              type: "POST",
-              data: {},
-              success: function (data, textStatus) { }
-          });
-          e.preventDefault();
-      });
+<script>
+    $('.photo-delete-link').click(function (e) {
+        $.ajax({
+            url: this.href,
+            dataType: "text json",
+            type: "POST",
+            data: { fileName: $(this).parent().find('img').attr('id') },
+            success: function (data, textStatus) { }
+        });
+        $(this).parent().remove();
+        e.preventDefault();
+        
+    });
 </script>
