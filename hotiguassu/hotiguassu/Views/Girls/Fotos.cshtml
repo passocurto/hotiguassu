@@ -1,6 +1,7 @@
 ﻿@model hotiguassu.Models.GirlsModels
 @{
     ViewBag.Title = "Nova Garota";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
 
     <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/Bootstrap/bootstrap.min.css")"/>
@@ -27,18 +28,24 @@
     <script src="@Url.Content("~/Content/FileUpload/locale.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Content/FileUpload/main.js")" type="text/javascript"></script>
 
+
+    <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/reset.css")">
+    <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/style.css")">
+    <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/slider.css")">
+    <link rel="stylesheet" type="text/css" media="screen"   href="@Url.Content("~/Content/skin.css")">
+
 <div class="header2">
     <div class="subpages2-nav">
         @Html.Partial("_MenuGirlPartial")
     </div>
 </div>
-<section id="contentGirls">
+<section id="contentGirls" style="display: table;">
 
 
     <form id="fileupload" action="../../Upload/UploadHandler.ashx" method="post" enctype="multipart/form-data">
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="row fileupload-buttonbar">
-            <div class="span7">
+            <div class="span7" style="margin: 10px 10px 0px 335px;">
                 <!-- The fileinput-button span is used to style the file input field as button -->
                 <span class="btn btn-success fileinput-button">
                     <i class="icon-plus icon-white"></i>
