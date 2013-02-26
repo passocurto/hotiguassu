@@ -35,7 +35,7 @@ legend {padding: 0.2em 0.5em;}
 #BoasVindas i{font-size:52px;color:#bf96c7;margin:10px}
 
 form label{color:#ccc;}
-form input, textarea, label, select{color:#bf96c7;}
+form input, textarea, label, select{color:#bf96c7;resize: none;}
 
 #bustoQuadril #LabelBusto{margin-left:60px}
 #AlturaPeso #LabelPeso{margin-left:60px}
