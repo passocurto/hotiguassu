@@ -102,7 +102,7 @@ namespace hotiguassu.Controllers
                     girlsmodels.DtNacimento = DateTime.Parse(dtNascimento);
                 }
 
-                db.Configuration.ValidateOnSaveEnabled = true;
+                db.Configuration.ValidateOnSaveEnabled = false;
                 FormsAuthentication.SetAuthCookie(girlsmodels.login, false);
                 db.GirlsModels.Add(girlsmodels);
                 db.SaveChanges();
