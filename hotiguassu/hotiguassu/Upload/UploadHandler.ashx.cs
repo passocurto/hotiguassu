@@ -7,13 +7,16 @@ using System.Drawing;
 using System.Web.UI.WebControls;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Web.SessionState;
+
+
 
 namespace jQuery_File_Upload.MVC3.Upload
 {
     /// <summary>
     /// Summary description for UploadHandler
     /// </summary>
-    public class UploadHandler : IHttpHandler
+    public class UploadHandler : IHttpHandler, System.Web.SessionState.IReadOnlySessionState
     {
         private static ImageCodecInfo jpgEncoder;
         private readonly JavaScriptSerializer js;
@@ -251,22 +254,22 @@ namespace jQuery_File_Upload.MVC3.Upload
 
         private void criaPastaGarota()
         {
-            var cookieGarota = (HttpCookie)HttpContext.Current.Request.Cookies["idGirl"];
-            if (cookieGarota != null)
+            var sessionGarota = (string)HttpContext.Current.Session["idGirl"];
+            if (sessionGarota != null)
             {
-                if (!Directory.Exists(StorageRoot + cookieGarota.Value))
-                    Directory.CreateDirectory(StorageRoot + cookieGarota.Value);
+                if (!Directory.Exists(StorageRoot + sessionGarota))
+                    Directory.CreateDirectory(StorageRoot + sessionGarota);
                 ;
             }
         }
 
         private void criaPastaMinhaturaGarota()
         {
-            var cookieGarota = (HttpCookie)HttpContext.Current.Request.Cookies["idGirl"];
-            if (cookieGarota != null)
+            var sessionGarota = (string)HttpContext.Current.Session["idGirl"];
+            if (sessionGarota != null)
             {
-                if (!Directory.Exists(StorageRoot + cookieGarota.Value + "\\" + "Minhatura"))
-                    Directory.CreateDirectory(StorageRoot + cookieGarota.Value + "\\" + "Minhatura");
+                if (!Directory.Exists(StorageRoot + sessionGarota + "\\" + "Minhatura"))
+                    Directory.CreateDirectory(StorageRoot + sessionGarota + "\\" + "Minhatura");
                 ;
             }
         }
