@@ -8,6 +8,10 @@ using System.Web.UI.WebControls;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Web.SessionState;
+using System;
+using hotiguassu.Models;
+
+
 
 
 
@@ -20,6 +24,7 @@ namespace jQuery_File_Upload.MVC3.Upload
     {
         private static ImageCodecInfo jpgEncoder;
         private readonly JavaScriptSerializer js;
+        private hotiguassuContext db = new hotiguassuContext();
 
         private string StorageRoot
         {
@@ -38,7 +43,7 @@ namespace jQuery_File_Upload.MVC3.Upload
         {
             context.Response.AddHeader("Pragma", "no-cache");
             context.Response.AddHeader("Cache-Control", "private, no-cache");
-
+            
             HandleMethod(context);
         }
 
@@ -146,7 +151,22 @@ namespace jQuery_File_Upload.MVC3.Upload
                 ResizeImage(file.InputStream, fullPath , 500, 80);
                 string fullName = Path.GetFileName(file.FileName);
                 statuses.Add(new FilesStatus(fullName, file.ContentLength, fullPath));
+                GravaFotoBanco(file.ContentType, file.FileName);
             }
+        }
+
+        private void GravaFotoBanco(string ext,string nmFoto) { 
+            hotiguassu.Models.FotosModels Foto = null;
+            string idGirl = (string)HttpContext.Current.Session["idGirl"];
+            Foto.idGirl = int.Parse(idGirl);
+            Foto.nmFoto = nmFoto;
+            Foto.nmExtensao = ext;
+            Foto.dtUpload = DateTime.Now;
+            Foto.nmHost = HttpContext.Current.Request.UserHostAddress;
+            Foto.tipoFoto = 'A';
+            Foto.nmSituacao = 'P';
+            db.FotoModels.Add(Foto);
+            db.SaveChanges();
         }
 
         public void ResizeStream(int imageSize, Stream filePath, string outputPath)

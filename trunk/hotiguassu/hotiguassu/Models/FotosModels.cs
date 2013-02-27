@@ -8,14 +8,18 @@ using System.Web.Security;
 namespace hotiguassu.Models
 {
     [Table("tbGerFotos")]
-    public class UsuarioModels
+    public class FotosModels
     {
 
-        [Key]
+        [Key, Column(Order = 0)]
         public int idFoto { get; set; }
-        
-        public int idGirl { get; set; }
 
+
+
+        public int idGirl { get; set; }
+        [ForeignKey("idGirl"), Column(Order = 1)]
+        
+        
         [Required]
         [Display(Name = "Nome")]
         public string nmFoto { get; set; }
@@ -39,6 +43,8 @@ namespace hotiguassu.Models
         [Required]
         [Display(Name = "Situacao")]
         public char nmSituacao { get; set; }
+
+        public virtual GirlsModels Girl { get; set; }
     }
 
 }

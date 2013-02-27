@@ -25,7 +25,7 @@ namespace hotiguassu.Models
 
         public DbSet<GirlsModels> GirlsModels { get; set; }
 
-        public DbSet<UsuarioModels> UsuarioModels { get; set; }
+        public DbSet<FotosModels> FotoModels { get; set; }
 
     }
 }
