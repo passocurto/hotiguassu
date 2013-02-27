@@ -15,9 +15,9 @@ namespace hotiguassu.Models
         public int idFoto { get; set; }
 
 
-
+        //[ForeignKey("idGirl"), Column(Order = 1)]
         public int idGirl { get; set; }
-        [ForeignKey("idGirl"), Column(Order = 1)]
+        
         
         
         [Required]
