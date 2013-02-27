@@ -24,10 +24,7 @@ namespace hotiguassu.Controllers
         [HttpPost]
         public ActionResult LogOn(UsuarioModels model)
         {
-            var q = from u in db.UsuarioModels
-                    where u.Login == model.Login select u;
-
-            var usu = q.FirstOrDefault();
+            
             return View();
 
         }
