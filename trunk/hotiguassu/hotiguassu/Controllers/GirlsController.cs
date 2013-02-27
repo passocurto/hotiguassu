@@ -140,8 +140,9 @@ namespace hotiguassu.Controllers
         //
         // GET: /Girls/Edit/
 
-        public ActionResult Edit(string id)
+        public ActionResult Edit()
         {
+            var id = Session["idGirl"];
             if (id != null)
             {
                 GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
