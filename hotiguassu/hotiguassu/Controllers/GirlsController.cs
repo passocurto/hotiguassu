@@ -142,7 +142,7 @@ namespace hotiguassu.Controllers
 
         public ActionResult Edit()
         {
-            var id = Session["idGirl"];
+            string id = Session["idGirl"] != null ? (string)Session["idGirl"]:null;
             if (id != null)
             {
                 GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
@@ -177,7 +177,8 @@ namespace hotiguassu.Controllers
         [HttpGet]
         public ActionResult Fotos()
         {
-            if (Session["idGirl"] != null)
+            string id = Session["idGirl"] != null ? (string)Session["idGirl"] : null;
+            if (id != null)
             {
                 return View();
             }
@@ -233,8 +234,9 @@ namespace hotiguassu.Controllers
         //
         // GET: /Girls/Delete/
         [HttpGet]
-        public ActionResult Delete(string id)
+        public ActionResult Delete()
         {
+            string id = Session["idGirl"] != null ? (string)Session["idGirl"] : null;
             if (id != null)
             {
                 GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
