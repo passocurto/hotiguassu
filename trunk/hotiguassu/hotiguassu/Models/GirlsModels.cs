@@ -52,13 +52,13 @@ namespace hotiguassu.Models
         [Display(Name = "Situação")]
         public string situacao { get; set; }
 
-        [DataType(DataType.Password)]
         [Display(Name = "Senha")]
-        public byte[] Senha { get; set; }
-
-
+        public string Senha { get; set; }
 
         public IEnumerable<SelectListItem> TipodeCabelo { get; set; }
+
+        public virtual ICollection<FotosModels> FotosModel { get; set; }
+        
 
     }
 }
