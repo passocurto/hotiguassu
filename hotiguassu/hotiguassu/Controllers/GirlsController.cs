@@ -9,6 +9,9 @@ using hotiguassu.Models;
 using System.Web.Security;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.Security.Cryptography;
+using System.Text;
+using System.Collections;
 
 
 namespace hotiguassu.Controllers
@@ -16,7 +19,8 @@ namespace hotiguassu.Controllers
     public class GirlsController : Controller
     {
         private hotiguassuContext db = new hotiguassuContext();
-
+        private static byte[] bIV = { 0x50, 0x08, 0xF1, 0xDD, 0xDE, 0x3C, 0xF2, 0x18, 0x44, 0x74, 0x19, 0x2C, 0x53, 0x49, 0xAB, 0xBC };
+        private const string cryptoKey = "Q3JpcHRvZ3JhZmlhcyBjb20gUmluamRhZWwgLyBBRVM=";
 
         [HttpPost]
         public ActionResult LogOn(GirlsModels models)
@@ -27,11 +31,10 @@ namespace hotiguassu.Controllers
 
             var usu = q.FirstOrDefault();
 
-            var logado = false;
-            if (usu.Senha == models.Senha)
-                logado = true;
+            string senhaCriptografada = Encoding.UTF8.GetString(usu.Senha);
+            string senhaDescriptografada = Decrypt(senhaCriptografada);
 
-            if (logado)
+            if (senhaDescriptografada.Equals(Request.Form["Senha"]))
             {
                 FormsAuthentication.SetAuthCookie(models.login, false);
                 GravaSessionGirl(Convert.ToString(usu.idGirl));
@@ -43,6 +46,8 @@ namespace hotiguassu.Controllers
             }
             return View("LogOn");
         }
+
+ 
 
         private void GravaSessionGirl(string IdGirl)
         {
@@ -63,7 +68,7 @@ namespace hotiguassu.Controllers
             }
             else
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -88,7 +93,7 @@ namespace hotiguassu.Controllers
 
         //
         // POST: /Girls/Create
-        
+
         [HttpPost]
         public ActionResult Create(GirlsModels girlsmodels)
         {
@@ -101,7 +106,7 @@ namespace hotiguassu.Controllers
                 {
                     girlsmodels.DtNacimento = DateTime.Parse(dtNascimento);
                 }
-
+                girlsmodels.Senha = Encrypt(Request.Form["Senha"]);
                 db.Configuration.ValidateOnSaveEnabled = false;
                 FormsAuthentication.SetAuthCookie(girlsmodels.login, false);
                 db.GirlsModels.Add(girlsmodels);
@@ -111,6 +116,67 @@ namespace hotiguassu.Controllers
 
             return View(girlsmodels);
         }
+
+        
+
+        public static byte[] Encrypt(string text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                byte[] bKey = Convert.FromBase64String(cryptoKey);
+                byte[] bText = new UTF8Encoding().GetBytes(text);
+
+                Rijndael rijndael = new RijndaelManaged();
+
+                rijndael.KeySize = 256;
+
+                MemoryStream mStream = new MemoryStream();
+                CryptoStream encryptor = new CryptoStream(
+                    mStream,
+                    rijndael.CreateEncryptor(bKey, bIV),
+                    CryptoStreamMode.Write);
+
+                encryptor.Write(bText, 0, bText.Length);
+                encryptor.FlushFinalBlock();
+                var str = Convert.ToBase64String(mStream.ToArray());
+                byte[] retorno = System.Text.Encoding.UTF8.GetBytes(str);
+                return retorno;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static string Decrypt(string text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                byte[] bKey = Convert.FromBase64String(cryptoKey);
+                byte[] bText = Convert.FromBase64String(text);
+
+                Rijndael rijndael = new RijndaelManaged();
+
+                rijndael.KeySize = 256;
+
+                MemoryStream mStream = new MemoryStream();
+
+                CryptoStream decryptor = new CryptoStream(
+                    mStream,
+                    rijndael.CreateDecryptor(bKey, bIV),
+                    CryptoStreamMode.Write);
+
+                decryptor.Write(bText, 0, bText.Length);
+                decryptor.FlushFinalBlock();
+                UTF8Encoding utf8 = new UTF8Encoding();
+                return utf8.GetString(mStream.ToArray());
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         private void gravaTelefone(GirlsModels girlsmodels)
         {
@@ -142,7 +208,7 @@ namespace hotiguassu.Controllers
 
         public ActionResult Edit()
         {
-            string id = Session["idGirl"] != null ? (string)Session["idGirl"]:null;
+            string id = Session["idGirl"] != null ? (string)Session["idGirl"] : null;
             if (id != null)
             {
                 GirlsModels girlsmodels = db.GirlsModels.Find(int.Parse(id));
@@ -152,7 +218,7 @@ namespace hotiguassu.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            
+
         }
 
         //
@@ -217,7 +283,7 @@ namespace hotiguassu.Controllers
                     {
                         System.IO.File.Delete(Server.MapPath(caminho) + "/" + fileName);
                         //Deleta Minhatura
-                        System.IO.File.Delete(Server.MapPath(caminho) + "/" + "Minhatura"+ "/" + fileName);
+                        System.IO.File.Delete(Server.MapPath(caminho) + "/" + "Minhatura" + "/" + fileName);
                     }
                 }
 
@@ -246,7 +312,7 @@ namespace hotiguassu.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-           
+
         }
 
         //
@@ -301,11 +367,11 @@ namespace hotiguassu.Controllers
         public ActionResult LogOff()
         {
             FormsAuthentication.SignOut();
-            Session.Remove("idGirl"); 
+            Session.Remove("idGirl");
             return RedirectToAction("Index", "Home");
         }
 
-       
+
 
     }
 }
