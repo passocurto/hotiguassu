@@ -1,14 +1,10 @@
 ﻿@model hotiguassu.Models.GirlsModels
-
 @{
     ViewBag.Title = "Inicio";
     Layout = "~/Views/Shared/_Layout.cshtml"; 
 }
-
 <title>Home</title>
-
-
-    <script>
+<script>
         $(document).ready(function () {
             $('.slider')._TMS({
                 show: 0,
@@ -34,21 +30,23 @@
                 animation: 1200,
             });
         });
-	</script>
-  
-  <div class="header">
-  	<div>
-        
+</script>
+<div class="header">
+    <div>
         @Html.Partial("_MenuInicialPartial")
-
-        <div id="slide">		
+        <div id="slide">
             <div class="slider">
                 <ul class="items">
-                    <li><img src="@Url.Content("~/Content/images/slide-1.jpg")" alt="" /></li>
-                    <li><img src="@Url.Content("~/Content/images/slide-2.jpg")" alt="" /></li>
-                    <li><img src="@Url.Content("~/Content/images/slide-3.jpg")" alt="" /></li>
-                    <li><img src="@Url.Content("~/Content/images/slide-4.jpg")" alt="" /></li>
-                    <li><img src="@Url.Content("~/Content/images/slide-5.jpg")" alt="" /></li>
+                    <li>
+                        <img src="@Url.Content("~/Content/images/slide-1.jpg")" alt="" /></li>
+                    <li>
+                        <img src="@Url.Content("~/Content/images/slide-2.jpg")" alt="" /></li>
+                    <li>
+                        <img src="@Url.Content("~/Content/images/slide-3.jpg")" alt="" /></li>
+                    <li>
+                        <img src="@Url.Content("~/Content/images/slide-4.jpg")" alt="" /></li>
+                    <li>
+                        <img src="@Url.Content("~/Content/images/slide-5.jpg")" alt="" /></li>
                 </ul>
             </div>
             <ul class="pags">
@@ -57,35 +55,34 @@
                 <li><a href="#"><strong>0</strong>3</a></li>
                 <li><a href="#"><strong>0</strong>4</a></li>
                 <li><a href="#"><strong>0</strong>5</a></li>
-            </ul>	
+            </ul>
         </div>
     </div>
-  </div>   
-
-    <section id="content">
+</div>
+<section id="content">
         <div class="gallery-block">
         	<h2>Garotas</h2>
             <ul id="mycarousel" class="jcarousel-skin-tango gallery-photo">
             @{
                 var ga = ViewBag.listaGarotas;
-                
-                foreach (var it in ga){
-                    
-                     var caminho = "~/Fotos/" + it.idGirl + "/Minhatura/";
-                     DirectoryInfo arquivos = new DirectoryInfo(Server.MapPath(caminho));
-                     FileInfo[] files = arquivos.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
-                    
-                     foreach (var fileInfo in files)
-                     {
-                         var nomedafoto = fileInfo.Name;
+
+                foreach (var it in ga)
+                {
+                    var caminho = "~/Fotos/" + it.idGirl + "/Minhatura/";
+                    DirectoryInfo arquivos = new DirectoryInfo(Server.MapPath(caminho));
+                    if (arquivos.Exists)
+                    {
+                        FileInfo[] files = arquivos.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
+
+                        foreach (var fileInfo in files)
+                        {
+                            var nomedafoto = fileInfo.Name;
                          <li> <img id="@nomedafoto" src="@Url.Content("~/Fotos/" + it.idGirl + "/Minhatura/" + nomedafoto)"/> </li>
-                         break;
-                     }
+                            break;
+                        }
+                    }
                 }
             }
      
         </div>
-    </section> 
-
-           
-
+    </section>
