@@ -31,8 +31,7 @@ namespace hotiguassu.Controllers
 
             var usu = q.FirstOrDefault();
 
-            string senhaCriptografada = Encoding.UTF8.GetString(usu.Senha);
-            string senhaDescriptografada = Decrypt(senhaCriptografada);
+            string senhaDescriptografada = Decrypt(usu.Senha);
 
             if (senhaDescriptografada.Equals(Request.Form["Senha"]))
             {
@@ -119,7 +118,7 @@ namespace hotiguassu.Controllers
 
         
 
-        public static byte[] Encrypt(string text)
+        public static string Encrypt(string text)
         {
             if (!string.IsNullOrEmpty(text))
             {
@@ -139,8 +138,7 @@ namespace hotiguassu.Controllers
                 encryptor.Write(bText, 0, bText.Length);
                 encryptor.FlushFinalBlock();
                 var str = Convert.ToBase64String(mStream.ToArray());
-                byte[] retorno = System.Text.Encoding.UTF8.GetBytes(str);
-                return retorno;
+                return str;
             }
             else
             {
@@ -350,6 +348,7 @@ namespace hotiguassu.Controllers
         {
             if (model != null)
             {
+                
                 db.GirlsModels.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");

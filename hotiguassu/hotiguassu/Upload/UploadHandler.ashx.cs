@@ -156,7 +156,7 @@ namespace jQuery_File_Upload.MVC3.Upload
         }
 
         private void GravaFotoBanco(string ext,string nmFoto) { 
-            hotiguassu.Models.FotosModels Foto = null;
+            FotosModels Foto = new FotosModels();
             string idGirl = (string)HttpContext.Current.Session["idGirl"];
             Foto.idGirl = int.Parse(idGirl);
             Foto.nmFoto = nmFoto;
@@ -164,7 +164,8 @@ namespace jQuery_File_Upload.MVC3.Upload
             Foto.dtUpload = DateTime.Now;
             Foto.nmHost = HttpContext.Current.Request.UserHostAddress;
             Foto.tipoFoto = 'A';
-            Foto.nmSituacao = 'P';
+            Foto.nmSituacao = 'A';
+            db.Configuration.ValidateOnSaveEnabled = false;
             db.FotoModels.Add(Foto);
             db.SaveChanges();
         }

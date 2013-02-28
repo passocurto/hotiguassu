@@ -1,4 +1,5 @@
-﻿
+﻿@model hotiguassu.Models.GirlsModels
+
 @{
     ViewBag.Title = "Inicio";
     Layout = "~/Views/Shared/_Layout.cshtml"; 
@@ -65,55 +66,26 @@
         <div class="gallery-block">
         	<h2>Garotas</h2>
             <ul id="mycarousel" class="jcarousel-skin-tango gallery-photo">
-            	<li><a href="@Url.Action("AboutGirls", "Home")"> <img src="@Url.Content("~/Content/images/gallery-1.jpg")" alt=""></a><a href="#" ><img src="@Url.Content("~/Content/images/gallery-6.jpg")" alt=""></a></li>
-                <li><a href="#" ><img src="@Url.Content("~/Content/images/gallery-2.jpg")" alt=""></a><a href="#" ><img src="@Url.Content("~/Content/images/gallery-7.jpg")" alt=""></a></li>
-                <li><a href="#" ><img src="@Url.Content("~/Content/images/gallery-3.jpg")" alt=""></a><a href="#" ><img src="@Url.Content("~/Content/images/gallery-8.jpg")" alt=""></a></li>
-                <li><a href="#" ><img src="@Url.Content("~/Content/images/gallery-4.jpg")" alt=""></a><a href="#" ><img src="@Url.Content("~/Content/images/gallery-2.jpg")" alt=""></a></li>
-                <li><a href="#" ><img src="@Url.Content("~/Content/images/gallery-5.jpg")" alt=""></a><a href="#" ><img src="@Url.Content("~/Content/images/gallery-7.jpg")" alt=""></a></li>
-            </ul>
+            @{
+                var ga = ViewBag.listaGarotas;
+                
+                foreach (var it in ga){
+                    
+                     var caminho = "~/Fotos/" + it.idGirl + "/Minhatura/";
+                     DirectoryInfo arquivos = new DirectoryInfo(Server.MapPath(caminho));
+                     FileInfo[] files = arquivos.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
+                    
+                     foreach (var fileInfo in files)
+                     {
+                         var nomedafoto = fileInfo.Name;
+                         <li> <img id="@nomedafoto" src="@Url.Content("~/Fotos/" + it.idGirl + "/Minhatura/" + nomedafoto)"/> </li>
+                         break;
+                     }
+                }
+            }
+     
         </div>
     </section> 
 
-        <!--==============================content================================
-        <div class="page1-row1 pad-1">
-        	<div class="col-1">
-            	<h3 class="h3 p2">Categories:</h3>
-                <ul class="list-1">
-                	<li><a href="#">Fashion</a></li>
-                    <li><a href="#">Animals</a></li>
-                    <li><a href="#">Landscapes</a></li>
-                    <li><a href="#">Sport</a></li>
-                    <li><a href="#">Portrait</a></li>
-                    <li><a href="#">Wedding</a></li>
-                    <li><a href="#">Urban</a></li>
-                </ul>
-            </div>
-            <div class="col-2">
-            	<h2 class="h2 p2">Shortly about me:</h2>
-                <p class="p1">Paris Clarks is one of <a href="http://blog.templatemonster.com/free-website-templates/" class="link" target="_blank">Free Website Templates</a> created by TemplateMonster.com team.This website template is optimized for 1280X1024 screen resolution. It is 
-also XHTML &amp; CSS valid.</p>
-				<p>The PSD source files of this <a href="http://blog.templatemonster.com/2012/04/30/free-website-template-photography-justslider-jcarousel-fancybox/" class="link" target="_blank" rel="nofollow">Paris Clarks</a> template are available for free for the registered members of TemplateMonster.com.</p>
-                <a href="#" class="link-1 link-1-pad bot-1">Read more</a>
-                <div class="clear"></div>
-                <h3 class="h3">Get social:</h3>
-                <div class="soc-icons">
-                	<a href="#"><img src="@Url.Content("~/Content/images/icon-1.png")" alt=""></a>
-                    <a href="#"><img src="@Url.Content("~/Content/images/icon-2.png")" alt=""></a>
-                    <a href="#"><img src="@Url.Content("~/Content/images/icon-3.png")" alt=""></a>
-                </div>
-            </div>  
-            <div class="col-3">
-            	<h2 class="h2 p2">Get in touch</h2>
-                <div class="adr">
-                    <p class="p3"><strong>Freephone:</strong> <span class="clr-1">+1 800 559 6580</span><br>
-                    <strong>Telephone:</strong> <span class="clr-1">+1 800 603 6035</span><br>
-                    <strong>Fax:</strong> <span class="clr-1">+1 800 889 9898</span><br>
-                    <strong>E-mail:</strong> <a href="#" class="clr-1">mail@demolink.org</a></p>
-                    <p class="clr-1">9870St Vincent Place,<br>Glasgow, DC 45 Fr 45.</p> 
-                </div>
-            </div>      
-        </div>
-    </section> 
-<!--==============================footer=================================-->
            
 
