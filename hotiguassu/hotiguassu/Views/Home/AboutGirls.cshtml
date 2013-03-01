@@ -1,4 +1,4 @@
-
+@model hotiguassu.Models.GirlsModels
 @{Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 
@@ -50,27 +50,42 @@
     	<div class="pad-1">
             <div class="page2-row1">
                 <div class="col-4">
-                    <h2 class="h2 p2">Priscila</h2>
+                    <h2 class="h2 p2">@Model.Nome - @Model.Telefones</h2>
                     <div class="wrap">
-                        <img src="@Url.Content("~/Content/images/page2-img1.jpg")" alt="" class="img-border img-indent">
+                            @{
+                                var caminho = "~/Fotos/" + Model.idGirl + "/Minhatura/";
+                                DirectoryInfo arquivos = new DirectoryInfo(Server.MapPath(caminho));
+                                if (arquivos.Exists)
+                                {
+                                    FileInfo[] files = arquivos.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
+
+                                    foreach (var fileInfo in files)
+                                    {
+                                        var nomedafoto = fileInfo.Name;
+                                            <img id="@nomedafoto" src="@Url.Content("~/Fotos/" + Model.idGirl + "/Minhatura/" + nomedafoto)" alt="" class="img-border img-indent"/>
+                                        break;
+                                    }
+                                }
+                            }
                         <div class="extra-wrap">
-                            <p class="p4"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sed arcu dui, eu tincidunt sem. Vivamus hendrerit mauris ut dui gravida ut viverra lectus tincidunt. </i></p>
-                            <p>Vivamus hendrerit mauris ut dui gravida ut viverra lectus tincidunt. Cras mattis tempor eros nec tristique. Sed sed felis arcu, vel vehicula augue. <a href="#" class="link">Maecenas faucibus</a> sagittis cursus. Fusce tincidunt, tellus eget tristique cursus, orci mi iaculis.</p>
-                            <a href="#" class="link-1 link-1-pad bot-1">Leia Mais</a>
+                            <p class="p4"><i> @Model.Biografia </i></p>
                         </div>
                     </div>
                 </div>
                 <div class="col-5">
                     <h3 class="h3 p2">Características </h3>
                     <ul class="list-2">
-                        <li><span><a href="#">Altura</a> 1.65 al</span></li>
-                        <li><span><a href="#">Quadril</a> 90cm </span></li>
-                        <li><span><a href="#">Cabelos</a> Morena</span></li>
-                        <li><span><a href="#">Olhos</a> Castanhos </span></li>
-                        <li><span><a href="#">Altura</a> 1.65 al</span></li>
-                        <li><span><a href="#">Quadril</a> 90cm </span></li>
-                        <li><span><a href="#">Cabelos</a> Morena</span></li>
- 
+                    @{  if(Model.Altura != null){
+                        <li><span><a href="#">Altura</a> @Model.Altura </span></li>}
+                        if (Model.Quadris != null){
+                        <li><span><a href="#">Quadril</a> @Model.Quadris </span></li>}
+                        if (Model.Cabelos != null){
+                        <li><span><a href="#">Cabelos</a> @Model.Cabelos</span></li>}
+                        if (Model.Busto != null){
+                        <li><span><a href="#">Busto</a> @Model.Busto </span></li>}
+                        if (Model.DtNacimento != null){
+                        <li><span><a href="#">Idade</a> @Model.DtNacimento</span></li>}
+                    }
                     </ul>
                 </div> 
             </div>
@@ -79,15 +94,26 @@
                 <div id="tab-1" class="tab-content gallery-photo" style="text-align: center;padding: 20px 0 20px 0;">
                    <div class="inner">
                         <ul id="mycarousel-1" class="jcarousel-skin-tango">
-                            <li><a class="plus"     href="@Url.Content("~/Content/images/portfolio-1-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-1.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-2-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-2.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-3-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-3.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-4-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-4.jpg")" alt=""></a></li>
-                            <li><a class="plus"     href="@Url.Content("~/Content/images/portfolio-5-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-5.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-6-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-6.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-7-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-7.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-8-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-8.jpg")" alt=""></a></li>
-                            <li><a class="plus"     href="@Url.Content("~/Content/images/portfolio-9-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-9.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-10-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-10.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-11-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-11.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-1-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-1.jpg")" alt=""></a></li>
-                            <li><a class="plus"     href="@Url.Content("~/Content/images/portfolio-12-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-12.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-13-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-13.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-14-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-14.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-2-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-2.jpg")" alt=""></a></li>
-                            <li><a class="plus"     href="@Url.Content("~/Content/images/portfolio-9-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-9.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-10-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-10.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-11-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-11.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-1-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-1.jpg")" alt=""></a></li>
-                            <li><a class="plus"     href="@Url.Content("~/Content/images/portfolio-12-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-12.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-13-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-13.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-14-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-14.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-2-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-2.jpg")" alt=""></a></li>
-                            <li><a class="plus"     href="@Url.Content("~/Content/images/portfolio-1-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-1.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-2-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-2.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-3-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-3.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-4-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-4.jpg")" alt=""></a></li>
-                            <li><a class="plus"     href="@Url.Content("~/Content/images/portfolio-5-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-5.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-6-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-6.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-7-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-7.jpg")" alt=""></a><a class="plus"     href="@Url.Content("~/Content/images/portfolio-8-big.jpg")"><img src="@Url.Content("~/Content/images/portfolio-8.jpg")" alt=""></a></li>
-                        </ul>
+
+                        @{
+                                var caminho2 = "~/Fotos/" + Model.idGirl + "/Minhatura/";
+                                DirectoryInfo arquivos2 = new DirectoryInfo(Server.MapPath(caminho2));
+                                if (arquivos.Exists)
+                                {
+                                    FileInfo[] files = arquivos2.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
+                                    <li>
+                                    @foreach (var fileInfo in files)
+                                    {
+                                        var nomedafoto = fileInfo.Name;
+                                        <a class="plus" id="@nomedafoto" href="@Url.Content("~/Fotos/" + Model.idGirl + "/" + nomedafoto)">
+                                            <img src="@Url.Content("~/Fotos/" + Model.idGirl + "/Minhatura/" + nomedafoto)" alt="">
+                                        </a> 
+                            
+                                     }
+                                     </li>
+                                 }
+                            }
+                          </ul>
                  </div>
              </div>
     </section> 

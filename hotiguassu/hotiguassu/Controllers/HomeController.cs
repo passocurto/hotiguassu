@@ -27,9 +27,12 @@ namespace hotiguassu.Controllers
             return View("Garotas");
         }
 
-        public ActionResult AboutGirls()
+        public ActionResult AboutGirls(int id)
         {
-            return View("AboutGirls");
+            GirlsModels girlsmodels = db.GirlsModels.Find(id);
+            if (girlsmodels != null)
+                return View("AboutGirls", girlsmodels);
+            return View("Index");
         }
 
         public ActionResult About()

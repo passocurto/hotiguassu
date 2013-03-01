@@ -77,8 +77,7 @@
                         foreach (var fileInfo in files)
                         {
                             var nomedafoto = fileInfo.Name;
-                         <li><a href="#" ><img id="@nomedafoto" src="@Url.Content("~/Fotos/" + it.idGirl + "/Minhatura/" + nomedafoto)"/><img src="@Url.Content("~/Content/images/gallery-7.jpg")" alt=""></a> </li>
-                <li><a href="#" ><img src="@Url.Content("~/Content/images/gallery-5.jpg")" alt=""></a><a href="#" ><img src="@Url.Content("~/Content/images/gallery-7.jpg")" alt=""></a></li>
+                                <li><a href="@Url.Action("AboutGirls", "Home", new { id = it.idGirl })" ><img id="@nomedafoto" src="@Url.Content("~/Fotos/" + it.idGirl + "/Minhatura/" + nomedafoto)"/></a> </li>
                             break;
                         }
                     }
