@@ -65,24 +65,77 @@
             <ul id="mycarousel" class="jcarousel-skin-tango gallery-photo">
             @{
                 var ga = ViewBag.listaGarotas;
+                var aocontra = ViewBag.GarotasContrario;
 
                 foreach (var it in ga)
                 {
+                    foreach (var it2 in ga)
+                    {                    
+                    
                     var caminho = "~/Fotos/" + it.idGirl + "/Minhatura/";
+                    var caminho2 = "~/Fotos/" + it2.idGirl + "/Minhatura/";
+                        
                     DirectoryInfo arquivos = new DirectoryInfo(Server.MapPath(caminho));
-                    if (arquivos.Exists)
+                    DirectoryInfo arquivos2 = new DirectoryInfo(Server.MapPath(caminho2));
+
+                    if (arquivos.Exists && arquivos2.Exists)
                     {
                         FileInfo[] files = arquivos.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
-
-                        foreach (var fileInfo in files)
+                        FileInfo[] files2 = arquivos2.GetFiles("*.jpg", SearchOption.TopDirectoryOnly);
+                        
+                        foreach (var fileInfo in files){
+                        foreach (var fileInfo2 in files2)
                         {
                             var nomedafoto = fileInfo.Name;
-                                <li><a href="@Url.Action("AboutGirls", "Home", new { id = it.idGirl })" ><img id="@nomedafoto" src="@Url.Content("~/Fotos/" + it.idGirl + "/Minhatura/" + nomedafoto)"/></a> </li>
+                            var nomedafoto2 = fileInfo2.Name;
+                               <li><a href="@Url.Action("AboutGirls", "Home", new { id = it2.idGirl })" ><div id="@nomedafoto2" style="width:205px;height:114px;background-image:url(@Url.Content("~/Fotos/" + it2.idGirl + "/Minhatura/" + nomedafoto2))"></div></a><a href="@Url.Action("AboutGirls", "Home", new { id = it.idGirl })" ><div id="@nomedafoto" style="width:205px;height:114px;background-image:url(@Url.Content("~/Fotos/" + it.idGirl + "/Minhatura/" + nomedafoto))"></div></a></li>
+                            break;
+                            }
                             break;
                         }
+                        }
+                 
                     }
                 }
-            }
-     
+                }
+            </ul>
+        </div>
+                <div class="page1-row1 pad-1">
+        	<div class="col-1">
+            	<h3 class="h3 p2">Categorias:</h3>
+                <ul class="list-1">
+                	<li><a href="#">Fashion</a></li>
+                    <li><a href="#">Animals</a></li>
+                    <li><a href="#">Landscapes</a></li>
+                    <li><a href="#">Sport</a></li>
+                    <li><a href="#">Portrait</a></li>
+                    <li><a href="#">Wedding</a></li>
+                    <li><a href="#">Urban</a></li>
+                </ul>
+            </div>
+            <div class="col-2">
+            	<h2 class="h2 p2">Shortly about me:</h2>
+                <p class="p1">Paris Clarks is one of <a href="http://blog.templatemonster.com/free-website-templates/" class="link" target="_blank">Free Website Templates</a> created by TemplateMonster.com team.This website template is optimized for 1280X1024 screen resolution. It is 
+also XHTML &amp; CSS valid.</p>
+				<p>The PSD source files of this <a href="http://blog.templatemonster.com/2012/04/30/free-website-template-photography-justslider-jcarousel-fancybox/" class="link" target="_blank" rel="nofollow">Paris Clarks</a> template are available for free for the registered members of TemplateMonster.com.</p>
+                <a href="#" class="link-1 link-1-pad bot-1">Read more</a>
+                <div class="clear"></div>
+                <h3 class="h3">Get social:</h3>
+                <div class="soc-icons">
+                	<a href="#"><img src="images/icon-1.png" alt=""></a>
+                    <a href="#"><img src="images/icon-2.png" alt=""></a>
+                    <a href="#"><img src="images/icon-3.png" alt=""></a>
+                </div>
+            </div>  
+            <div class="col-3">
+            	<h2 class="h2 p2">Get in touch</h2>
+                <div class="adr">
+                    <p class="p3"><strong>Freephone:</strong> <span class="clr-1">+1 800 559 6580</span><br>
+                    <strong>Telephone:</strong> <span class="clr-1">+1 800 603 6035</span><br>
+                    <strong>Fax:</strong> <span class="clr-1">+1 800 889 9898</span><br>
+                    <strong>E-mail:</strong> <a href="#" class="clr-1">mail@demolink.org</a></p>
+                    <p class="clr-1">9870St Vincent Place,<br>Glasgow, DC 45 Fr 45.</p> 
+                </div>
+            </div>      
         </div>
     </section>
