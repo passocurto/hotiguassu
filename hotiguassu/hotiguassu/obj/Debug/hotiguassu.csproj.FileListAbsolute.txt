@@ -18,3 +18,8 @@ C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\ho
 C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\hotiguassu.dll
 C:\Users\servidor\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\hotiguassu.pdb
+C:\Users\ricardo\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\bin\hotiguassu.dll
+C:\Users\ricardo\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\bin\hotiguassu.pdb
+C:\Users\ricardo\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\hotiguassu.csprojResolveAssemblyReference.cache
+C:\Users\ricardo\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\hotiguassu.dll
+C:\Users\ricardo\Documents\Visual Studio 2010\Projects\hotiguassu\hotiguassu\hotiguassu\obj\Debug\hotiguassu.pdb

@@ -13,6 +13,9 @@ namespace hotiguassu.Controllers
         public ActionResult Index()
         {
             ViewBag.listaGarotas = from u in db.GirlsModels select u;
+            ViewBag.GarotasContrario = from u in db.GirlsModels orderby db.GirlsModels descending select u;
+            
+
 
             return View();
         }
