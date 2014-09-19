@@ -1,0 +1,7 @@
+﻿@if(Request.IsAuthenticated) {
+    <text> <i> Bem Vinda <a href="/Girls/">  @User.Identity.Name </a></i>
+     @Html.ActionLink("LogOff", "LogOff", "Girls") </text>
+}
+else {
+    @: @Html.ActionLink("LogON", "LogOn", "Girls") 
+}

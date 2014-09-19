@@ -1,0 +1,13 @@
+﻿<div style='margin:0 auto;font-family:arial;background:#E46D19;border-right:10px solid #000;border-left:10px solid #000; width:500px;padding: 5px 0px'>
+	<h2 style='background:#E46D19;padding:10px;margin:0px;text-align:center;color:#fff'>Confirmação de E-mail</h2>
+	<h3 style='background:#FFEFB0;margin:0px;text-align:center;color:#555'>Olá @nmCliente</h3>
+	<p style='background:#fff;padding:20px 10px;font-size:16px;color:#555;margin:0px'>Para confirmar o seu endereço de e-mail e completar seu cadastro, basta clicar no link abaixo</p>
+	<a style='display:block;text-align:center;background:#FFEFB0;color:#333;font-size:18px;font-weight:bold;' href='http://www.iguhoteis.com/cliente/VerificacaoEmail/@idCliente' target='_blank' target='_blank'>Confirmar endereço e concluir meu cadastro!</a>
+	<h4 style='background:#fff;margin:10px 10px 0px 10px;padding:3px;color: #900;'>Após a conclusão da criação do seu perfil, você poderá:</h4>
+	<ul style='background:#ddd;margin:0px 10px 10px 10px;font-size:12px;'>
+		<li style='padding:2px 0px'>Fazer reservas facilmente e com rapidez</li>
+		<li style='padding:2px 0px'>Visualizar todas suas reservas</li>
+		<li style='padding:2px 0px'>Receber recomendações personalizadas</li>
+		<li style='padding:2px 0px'>Compartilhar comentários ou avaliações de hotéis que conhece</li>
+	</ul>
+</div>

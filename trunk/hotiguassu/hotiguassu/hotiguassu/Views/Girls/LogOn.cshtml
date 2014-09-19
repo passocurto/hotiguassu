@@ -1,0 +1,45 @@
+﻿@model hotiguassu.Models.GirlsModels
+
+@{
+    ViewBag.Title = "Log On";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<head>
+    <meta charset="utf-8" />
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#submit").click(function () {
+                $("form").submit();
+            });
+        });
+    </script>
+
+</head>
+
+  <div class="header">
+        <div class="subpages-nav">
+            @Html.Partial("_MenuInicialPartial")
+        </div>
+  </div>     
+
+@Html.ValidationSummary(true, "Login não pode ser concluido, por favor verifique os erros encontrados.")
+
+@using (Html.BeginForm())
+{
+            <div class="col-16" style="margin: 0 auto;margin-top: 150px;">
+            <p>
+                Por favor entre com seu login e senha. @Html.ActionLink("Registre-se", "Create") se não tiver uma conta.
+            </p>
+                <h2 class="h2 p2">Login</h2>
+		
+                        <label>@Html.EditorFor(model => model.login)</label>
+                        <label>@Html.PasswordFor(model => model.Senha)</label>
+                    
+                    <div class="btns">
+                        <a id="cancelar" href="/" class="link-1">Cancelar</a>
+                        <a id="submit" href="#" class="link-1">Logar</a>
+                    </div>
+        </div>
+}

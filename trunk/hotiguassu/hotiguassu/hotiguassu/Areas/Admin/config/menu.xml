@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<menu>
+  <menuitem>
+    <grupo>Cadastros Gerais</grupo>
+    <texto>Usuários</texto>
+    <action>Index</action>
+    <controller>Usuario</controller>
+  </menuitem>
+</menu>
