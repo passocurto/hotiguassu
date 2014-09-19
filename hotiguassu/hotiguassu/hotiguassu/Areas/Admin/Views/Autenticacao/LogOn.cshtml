@@ -1,0 +1,36 @@
+﻿@model hotiguassu.Models.UsuarioModels
+
+@{
+    ViewBag.Title = "Log On";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#submit").click(function () {
+            $("form").submit();
+        });
+
+    });
+
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div class="col-16" style="margin: 0 auto;margin-top: 150px;">
+        <h2 class="h2 p2">Login</h2>
+		<form id="form" method="post" >
+            <fieldset>
+            <label><input type="text" value="Login" name="login" id="login" onBlur="if(this.value=='') this.value='Login'" onFocus="if(this.value =='Login' ) this.value=''"></label>
+            <label><input type="password" value="Senha" name="senha" id="senha" onBlur="if(this.value=='') this.value='Senha'" onFocus="if(this.value =='Senha' ) this.value=''"></label>
+            <div class="btns"><a href="/" class="link-1" id="cancelar">Cancelar</a>
+            <a href="#" class="link-1" id="submit">Logar</a>
+            </div>
+            </fieldset>  
+        </form> 
+    </div>
+    
+}

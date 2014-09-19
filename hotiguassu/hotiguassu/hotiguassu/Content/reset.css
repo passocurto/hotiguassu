@@ -1,0 +1,43 @@
+a,abbr,acronym,address,applet,article,aside,audio,b,blockquote,big,body,center,canvas,caption,cite,code,command,datalist,dd,del,details,dfn,dl,div,dt,em,embed,fieldset,figcaption,figure,font,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,keygen,label,legend,li,meter,nav,object,ol,output,p,pre,progress,q,s,samp,section,small,span,source,strike,strong,sub,sup,table,tbody,tfoot,thead,th,tr,tdvideo,tt,u,ul,var{background:transparent;border:0 none;font-size:100%;margin:0;padding:0;border:0;outline:0;vertical-align:top;}ol, ul {list-style:none;}blockquote, q {quotes:none;}table, table td {padding:0;border:none;border-collapse:collapse;}img {vertical-align:top;}embed {vertical-align:top;}
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
+mark, rp, rt, ruby, summary, time {display:inline;}
+input, textarea {border:0; padding:0; margin:0; outline: 0;}
+iframe {border:0; margin:0; padding:0;}
+input, textarea, select {border: #3f3f3f 1px solid;
+background: #2c2c2c;
+font-size: 14px;
+font-family: "Times New Roman", Times, serif;
+color: #6f6f6f;
+padding: 4px 10px 5px 10px;
+outline: medium none;
+width: 238px;
+height: 17px;
+border-radius:3px;
+}
+
+#Peso,#Altura,#Busto,#Quadris {width: 40px;}
+#DtNacimento{width:66px;}
+#Cabelos{height: 29px;width:150px}
+#opcaoTelefone1 {width: 100px;margin:0 0 8px 0;}
+#opcaoTelefone2 {width: 100px;margin:0 0 8px 0;}
+#opcaoTelefone3 {width: 100px;margin:0 0 8px 0;}
+fieldset #telefone { border:#3f3f3f 1px solid; padding: 10px; border-radius: 5px; width: 145px;}
+legend {padding: 0.2em 0.5em;}
+
+
+#Senha {width: 100px;}
+#login {width: 100px;}
+
+.validation-summary-errors{margin: 0 auto;text-align: center;margin-top: 50px;}
+
+#BoasVindas{text-align:center;padding-top:150px}
+
+#BoasVindas i{font-size:52px;color:#bf96c7;margin:10px}
+
+form label{color:#ccc;}
+form input, textarea, label, select{color:#bf96c7;resize: none;}
+
+#bustoQuadril #LabelBusto{margin-left:60px}
+#AlturaPeso #LabelPeso{margin-left:60px}
+
+
